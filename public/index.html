@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Loaflings</title>
+
+  <link rel='icon' href='hand.png'>
+
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+  <!-- JQUERY -->
+  <script src="https://code.jquery.com/jquery-git.min.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+  <!-- <script src="/__/firebase/init.js"></script>   -->
+
+
+  <style>
+    ::placeholder {
+      color: black;
+    }
+
+    input {
+      color: #00aeff;
+      border: none;
+    }
+
+
+
+  </style>
+
+
+</head>
+<body>
+  
+  <div id="wall">
+    <div id='container'>
+      <div id='title'>
+        <div></div>
+        <div id='setting'></div>
+      </div>
+      <div id='wordlist'>
+        <div></div>
+        <div>
+          <span>
+            <!-- <input type="text" id="word-1" placeholder="HELLO"> -->
+            <!-- <span id="num-1">1</span> -->
+            <span id="num-1"></span><input type="text" id="input-1" value="" placeholder=""><br>
+            <span id="num-2"></span><input type="text" id="input-2" value="" placeholder=""><br>
+            <span id="num-3"></span><input type="text" id="input-3" value="" placeholder=""><br>
+            <span id="num-4"></span><input type="text" id="input-4" value="" placeholder=""><br>
+            <span id="num-5"></span><input type="text" id="input-5" value="" placeholder=""><br>
+            <span id="num-6"></span><input type="text" id="input-6" value="" placeholder=""><br>
+            <!-- <div id="word-1"></div> -->
+            <!-- <div id="word-2"></div> -->
+            <!-- <div id="word-3"></div> -->
+            <!-- <div id="word-4"></div> -->
+            <!-- <div id="word-5"></div> -->
+            <!-- <div id="word-6"></div> -->
+          </span>
+          <span>
+            <span id="num-7"></span><input type="text" id="input-7" value="" placeholder=""><br>
+            <span id="num-8"></span><input type="text" id="input-8" value="" placeholder=""><br>
+            <span id="num-9"></span><input type="text" id="input-9" value="" placeholder=""><br>
+            <span id="num-10"></span><input type="text" id="input-10" value="" placeholder=""><br>
+            <span id="num-11"></span><input type="text" id="input-11" value="" placeholder=""><br>
+            <span id="num-12"></span><input type="text" id="input-12" value="" placeholder=""><br>
+            <!-- <div id="word-7"></div> -->
+            <!-- <div id="word-8"></div> -->
+            <!-- <div id="word-9"></div> -->
+            <!-- <div id="word-10"></div> -->
+            <!-- <div id="word-11"></div> -->
+            <!-- <div id="word-12"></div> -->
+          </span>
+        </div>
+      </div>
+      <div id='diceJacket'><div id='dice'></div></div>
+      <div id='timer'></div>
+    </div>
+  </div>
+
+
+
+  
+
+
+
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBt93pXvtqZaKfS0sqgBlk8T1JVQtSQ4D4",
+      authDomain: "theloaflings.firebaseapp.com",
+      // databaseURL: "https://theloaflings.firebaseio.com",
+      projectId: "theloaflings",
+      // storageBucket: "theloaflings.appspot.com",
+      // messagingSenderId: "248360663633",
+      appId: "1:248360663633:web:6a9d4789bc16f9f42a9670",
+      measurementId: "G-KNRX30H28D"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+  <!-- <script src='wordbank.js'></script> -->
+  <!-- <script src='wordbank2.js'></script> -->
+  <script src='toolBox.js'></script>
+  <script src='app.js'></script>
+
+</body>
+</html>
