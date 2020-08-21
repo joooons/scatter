@@ -98,7 +98,8 @@ const colorSet = {
 
 
 // REGULAR VARIABLES __________________________________
-var timeLimit = 180;
+// var timeLimit = 180;
+var timeLimit = 10;
 var nowTime = nowInSeconds();
 var endTime = 0;
 var wordListIndex = 0;
@@ -137,6 +138,7 @@ const wordlist      = document.getElementById('wordlist');
 const diceJacket    = document.getElementById('diceJacket');
 const dice          = document.getElementById('dice');
 const timer         = document.getElementById('timer');
+const results       = document.getElementById('results');
 
 
 
@@ -182,7 +184,7 @@ const style = {
         "background\-color" : colorSet.whiteShade,
         "display" : "grid",
         "grid\-template\-columns" : "auto auto",
-        "grid\-template\-rows" : "auto auto auto auto" },
+        "grid\-template\-rows" : "auto auto auto auto auto" },
     box : {
         "cursor" : "pointer",
         "position" : "relative",
@@ -228,8 +230,16 @@ const style = {
         "align\-items" : "flex-start",
         "font\-size" : "8vh",
         "font\-family" : font.EN },
+    results : {
+        "grid\-row" : "4/5",
+        "grid\-column" : "2/3",
+        "justify\-content" : "center",
+        "text\-align" : "center",
+        "align\-items" : "flex-start",
+        "font\-size" : "6vh",
+        "font\-family" : font.EN },
     wordlist : {
-        "grid\-row" : "2/5",
+        "grid\-row" : "2/6",
         "grid\-column" : "1/2",
         "justify\-content" : "flex-start",
         "align\-items" : "flex-start",
@@ -286,9 +296,10 @@ const style = {
         "bottom" : "0px",
         "padding" : "0 20vw 0 20vw",
         "display" : "flex",
-        "flexFlow" : "column",
+        "flexFlow" : "row",
         "justifyContent" : "center",
         "alignContent" : "center",
+        "alignItems" : "center",
         "background" : colorSet.blackShade },
 
     wordcard : {
@@ -653,10 +664,13 @@ function addNamePrompt(elem) {
     let name = document.createElement('input');
 
     applyCSS(newElem, style.nameprompt);
-    label.innerHTML = "Name: ";
+    label.innerHTML = "Name:   ";
     label.style.color = "white";
+    label.style.marginRight = "1vh";
     $(name).attr("type", "text");
     name.style.fontSize = "4vh";
+    name.style.height = "5vh";
+    name.style.width = "20vh";
     name.style.color = "black";
 
     name.addEventListener("keyup", (ev) => {
@@ -758,6 +772,8 @@ applyCSS(diceJacket, style.box );
 applyCSS(diceJacket, style.dice );
 applyCSS(timer, style.box );
 applyCSS(timer, style.timer );
+applyCSS(results, style.box);
+applyCSS(results, style.results );
 applyCSS(setting, style.corner );
 applyCSS(wordlist.children[0], style.wordfirst );
 applyCSS(wordlist.children[1], style.wordframe );
@@ -827,6 +843,10 @@ function adoptToScreen(ratio) {
         timer.style.margin = (b) + u;
         timer.style.borderRadius = (2*b) + u;
         timer.style.fontSize = (8*k) + u;
+        
+        results.style.margin = (b) + u;
+        results.style.borderRadius = (2*b) + u;
+        results.style.fontSize = (6*k) + u;
 
         wordlist.style.margin = (b) + u;
         wordlist.style.borderRadius = (2*b) + u;
