@@ -1,22 +1,19 @@
-// FIREBASE objects _________________________
+
+
+
+//  MMMMMMMM  MMMMMM            MMMM    MMMMMM    MMMMMM  
+//  MM        MM    MM        MM    MM  MM    MM      MM  
+//  MMMMMMMM  MMMMMM          MM    MM  MMMMMM        MM  
+//  MM        MM    MM        MM    MM  MM    MM      MM  
+//  MM        MM    MM        MM    MM  MM    MM      MM  
+//  MM        MMMMMM            MMMM    MMMMMM    MMMM    
+
+// FIREBASE objects ____________________________________
 const db = firebase.firestore();
-
 var diceID;
-    db.collection('dice').limit(1).get()
-    .then( snap => { diceID = snap.docs[0].id });
-
 var timerID;
-    db.collection('timer').limit(1).get()
-    .then( snap => { timerID = snap.docs[0].id });
-
 var wordlistID;
-    db.collection('wordlist').where('set', '==', 'index').limit(1).get()
-    .then( snap => { wordlistID = snap.docs[0].id });
-
 var gameID;
-    db.collection('game').limit(1).get()
-    .then( snap => { gameID = snap.docs[0].id });
-
 var playerID;
 
 
@@ -26,6 +23,35 @@ var playerID;
 
 
 
+
+//  MMMMMMMM  MMMMMM            MMMM    MMMMMM    MMMMMM        MMMMMM  MM    MM  MMMMMM  MMMMMM  
+//  MM        MM    MM        MM    MM  MM    MM      MM          MM    MMMM  MM    MM      MM    
+//  MMMMMMMM  MMMMMM          MM    MM  MMMMMM        MM          MM    MM  MMMM    MM      MM    
+//  MM        MM    MM        MM    MM  MM    MM      MM          MM    MM    MM    MM      MM    
+//  MM        MM    MM        MM    MM  MM    MM      MM          MM    MM    MM    MM      MM    
+//  MM        MMMMMM            MMMM    MMMMMM    MMMM          MMMMMM  MM    MM  MMMMMM    MM    
+
+db.collection('dice').limit(1).get().then( snap => { diceID = snap.docs[0].id });
+db.collection('timer').limit(1).get().then( snap => { timerID = snap.docs[0].id });
+db.collection('wordlist').where('set', '==', 'index').limit(1).get().then( snap => { wordlistID = snap.docs[0].id });
+db.collection('game').limit(1).get().then( snap => { gameID = snap.docs[0].id });
+
+
+
+
+
+
+
+
+
+
+
+//  MM      MM  MMMMMMMM  MMMMMM    MMMMMM    MMMM          MMMMMM    MMMMMMMM    MMMM    MM        MMMM    MMMMMM      MMMM    MMMMMM  MMMMMM    MMMM    MM    MM    MMMM    
+//  MMMM  MMMM  MM        MM    MM    MM    MM    MM        MM    MM  MM        MM    MM  MM      MM    MM  MM    MM  MM    MM    MM      MM    MM    MM  MMMM  MM  MM    MM  
+//  MM  MM  MM  MMMMMMMM  MM    MM    MM    MMMMMMMM        MM    MM  MMMMMMMM  MM        MM      MMMMMMMM  MMMMMM    MMMMMMMM    MM      MM    MM    MM  MM  MMMM    MM      
+//  MM      MM  MM        MM    MM    MM    MM    MM        MM    MM  MM        MM        MM      MM    MM  MM    MM  MM    MM    MM      MM    MM    MM  MM    MM      MM    
+//  MM      MM  MM        MM    MM    MM    MM    MM        MM    MM  MM        MM    MM  MM      MM    MM  MM    MM  MM    MM    MM      MM    MM    MM  MM    MM  MM    MM  
+//  MM      MM  MMMMMMMM  MMMMMM    MMMMMM  MM    MM        MMMMMM    MMMMMMMM    MMMM    MMMMMM  MM    MM  MM    MM  MM    MM    MM    MMMMMM    MMMM    MM    MM    MMMM    
 
 // MEDIA declarations ____________________________________
 const mediaSmall = window.matchMedia( "(max-width:500px)");
@@ -63,6 +89,12 @@ const colorSet = {
 
 
 
+//  MM      MM    MMMM    MMMMMM    MMMMMM    MMMM    MMMMMM    MM      MMMMMMMM    MMMM    
+//  MM      MM  MM    MM  MM    MM    MM    MM    MM  MM    MM  MM      MM        MM    MM  
+//  MM      MM  MMMMMMMM  MMMMMM      MM    MMMMMMMM  MMMMMM    MM      MMMMMMMM    MM      
+//  MM      MM  MM    MM  MM    MM    MM    MM    MM  MM    MM  MM      MM            MM    
+//    MM  MM    MM    MM  MM    MM    MM    MM    MM  MM    MM  MM      MM        MM    MM  
+//      MM      MM    MM  MM    MM  MMMMMM  MM    MM  MMMMMM    MMMMMM  MMMMMMMM    MMMM    
 
 
 // REGULAR VARIABLES __________________________________
@@ -89,7 +121,12 @@ var resultMap = new Map();
 
 
 
-
+//  MMMMMM      MMMM    MM      MM          MMMM    MMMMMM    MMMMMM  
+//  MM    MM  MM    MM  MMMM  MMMM        MM    MM  MM    MM      MM  
+//  MM    MM  MM    MM  MM  MM  MM        MM    MM  MMMMMM        MM  
+//  MM    MM  MM    MM  MM      MM        MM    MM  MM    MM      MM  
+//  MM    MM  MM    MM  MM      MM        MM    MM  MM    MM      MM  
+//  MMMMMM      MMMM    MM      MM          MMMM    MMMMMM    MMMM    
 
 // DOM objects ________________________________
 const wall          = document.getElementById('wall');
@@ -111,6 +148,14 @@ const timer         = document.getElementById('timer');
 
 
 
+
+
+//    MMMM      MMMM      MMMM            MMMM      MMMM    MM    MM    MMMM    MMMMMM    MMMM    MM    MM  MMMMMM    MMMM    
+//  MM    MM  MM    MM  MM    MM        MM    MM  MM    MM  MMMM  MM  MM    MM    MM    MM    MM  MMMM  MM    MM    MM    MM  
+//  MM          MM        MM            MM        MM    MM  MM  MMMM    MM        MM    MMMMMMMM  MM  MMMM    MM      MM      
+//  MM            MM        MM          MM        MM    MM  MM    MM      MM      MM    MM    MM  MM    MM    MM        MM    
+//  MM    MM  MM    MM  MM    MM        MM    MM  MM    MM  MM    MM  MM    MM    MM    MM    MM  MM    MM    MM    MM    MM  
+//    MMMM      MMMM      MMMM            MMMM      MMMM    MM    MM    MMMM      MM    MM    MM  MM    MM    MM      MMMM    
 
 // CSS constants ___________________________________________________________
 
@@ -298,6 +343,14 @@ const style = {
 
 
 
+
+//  MMMMMMMM  MM      MM  MMMMMMMM  MM    MM  MMMMMM        MM      MMMMMM    MMMM    MMMMMM  MMMMMMMM  MM    MM  MMMMMMMM  MMMMMM      MMMM    
+//  MM        MM      MM  MM        MMMM  MM    MM          MM        MM    MM    MM    MM    MM        MMMM  MM  MM        MM    MM  MM    MM  
+//  MMMMMMMM  MM      MM  MMMMMMMM  MM  MMMM    MM          MM        MM      MM        MM    MMMMMMMM  MM  MMMM  MMMMMMMM  MMMMMM      MM      
+//  MM        MM      MM  MM        MM    MM    MM          MM        MM        MM      MM    MM        MM    MM  MM        MM    MM      MM    
+//  MM          MM  MM    MM        MM    MM    MM          MM        MM    MM    MM    MM    MM        MM    MM  MM        MM    MM  MM    MM  
+//  MMMMMMMM      MM      MMMMMMMM  MM    MM    MM          MMMMMM  MMMMMM    MMMM      MM    MMMMMMMM  MM    MM  MMMMMMMM  MM    MM    MMMM    
+
 // EVENT LISTENERS _______________________________________________________
 
 const listen = {
@@ -415,8 +468,6 @@ db.collection('players').onSnapshot( snap => {
     
 })
 
-
-
 window.onresize = () => { 
     adoptToScreen(Number.parseFloat(window.innerWidth / window.innerHeight).toPrecision(3)); 
 }
@@ -430,6 +481,14 @@ window.onresize = () => {
 
 
 
+
+
+//  MMMMMMMM  MM      MM  MMMMMMMM  MM    MM  MMMMMM        MM    MM    MMMM    MM    MM  MMMMMM    MM      MMMMMMMM  MMMMMM      MMMM    
+//  MM        MM      MM  MM        MMMM  MM    MM          MM    MM  MM    MM  MMMM  MM  MM    MM  MM      MM        MM    MM  MM    MM  
+//  MMMMMMMM  MM      MM  MMMMMMMM  MM  MMMM    MM          MMMMMMMM  MMMMMMMM  MM  MMMM  MM    MM  MM      MMMMMMMM  MMMMMM      MM      
+//  MM        MM      MM  MM        MM    MM    MM          MM    MM  MM    MM  MM    MM  MM    MM  MM      MM        MM    MM      MM    
+//  MM          MM  MM    MM        MM    MM    MM          MM    MM  MM    MM  MM    MM  MM    MM  MM      MM        MM    MM  MM    MM  
+//  MMMMMMMM      MM      MMMMMMMM  MM    MM    MM          MM    MM  MM    MM  MM    MM  MMMMMM    MMMMMM  MMMMMMMM  MM    MM    MMMM    
 
 // EVENT HANDLERS ______________________________________________
 
@@ -519,6 +578,14 @@ $(timer).on('click', function() {
 
 
 
+
+//    MMMM    MMMMMMMM  MMMMMM  MMMMMM  MM    MM  MMMMMM  MMMMMMMM  MMMMMM    MM      MM    MMMM    MM      
+//  MM    MM  MM          MM      MM    MMMM  MM    MM    MM        MM    MM  MM      MM  MM    MM  MM      
+//    MM      MMMMMMMM    MM      MM    MM  MMMM    MM    MMMMMMMM  MMMMMM    MM      MM  MMMMMMMM  MM      
+//      MM    MM          MM      MM    MM    MM    MM    MM        MM    MM  MM      MM  MM    MM  MM      
+//  MM    MM  MM          MM      MM    MM    MM    MM    MM        MM    MM    MM  MM    MM    MM  MM      
+//    MMMM    MMMMMMMM    MM    MMMMMM  MM    MM    MM    MMMMMMMM  MM    MM      MM      MM    MM  MMMMMM  
+
 // SETINTERVAL CONTINUOUS _________________________________________
 
 let timeLoop = setInterval( () => {
@@ -563,6 +630,13 @@ let timeLoop = setInterval( () => {
 
 
 
+
+//  MMMMMM      MMMM    MM      MM        MMMMMMMM  MM      MMMMMMMM  MM      MM          MMMM    MMMMMM    MMMMMMMM    MMMM    MMMMMM  MMMMMM    MMMM    MM    MM  
+//  MM    MM  MM    MM  MMMM  MMMM        MM        MM      MM        MMMM  MMMM        MM    MM  MM    MM  MM        MM    MM    MM      MM    MM    MM  MMMM  MM  
+//  MM    MM  MM    MM  MM  MM  MM        MMMMMMMM  MM      MMMMMMMM  MM  MM  MM        MM        MMMMMM    MMMMMMMM  MMMMMMMM    MM      MM    MM    MM  MM  MMMM  
+//  MM    MM  MM    MM  MM      MM        MM        MM      MM        MM      MM        MM        MM    MM  MM        MM    MM    MM      MM    MM    MM  MM    MM  
+//  MM    MM  MM    MM  MM      MM        MM        MM      MM        MM      MM        MM    MM  MM    MM  MM        MM    MM    MM      MM    MM    MM  MM    MM  
+//  MMMMMM      MMMM    MM      MM        MMMMMMMM  MMMMMM  MMMMMMMM  MM      MM          MMMM    MM    MM  MMMMMMMM  MM    MM    MM    MMMMMM    MMMM    MM    MM  
 
 // DOM ELEMENT CREATION ________________________________________________
 function addCover(elem) {
@@ -660,7 +734,12 @@ function addResultTable(elem) {
 
 
 
-
+//    MMMM      MMMM      MMMM            MMMM    MMMMMMMM  MMMMMM  MM    MM  MMMMMM    
+//  MM    MM  MM    MM  MM    MM        MM    MM  MM          MM    MM    MM  MM    MM  
+//  MM          MM        MM              MM      MMMMMMMM    MM    MM    MM  MM    MM  
+//  MM            MM        MM              MM    MM          MM    MM    MM  MMMMMM    
+//  MM    MM  MM    MM  MM    MM        MM    MM  MM          MM    MM    MM  MM        
+//    MMMM      MMMM      MMMM            MMMM    MMMMMMMM    MM      MMMM    MM        
 
 // CSS setup ___________________________________________
 
@@ -703,7 +782,12 @@ for ( i=1 ; i <= 12 ; i++ ) { applyCSS( $(`#input\-${i}`) , style.input ); }
 
 
 
-
+//    MMMM      MMMM      MMMM          MMMMMMMM  MM    MM  MM    MM    MMMM    MMMMMM  MMMMMM    MMMM    MM    MM    MMMM    
+//  MM    MM  MM    MM  MM    MM        MM        MM    MM  MMMM  MM  MM    MM    MM      MM    MM    MM  MMMM  MM  MM    MM  
+//  MM          MM        MM            MMMMMMMM  MM    MM  MM  MMMM  MM          MM      MM    MM    MM  MM  MMMM    MM      
+//  MM            MM        MM          MM        MM    MM  MM    MM  MM          MM      MM    MM    MM  MM    MM      MM    
+//  MM    MM  MM    MM  MM    MM        MM        MM    MM  MM    MM  MM    MM    MM      MM    MM    MM  MM    MM  MM    MM  
+//    MMMM      MMMM      MMMM          MM          MMMM    MM    MM    MMMM      MM    MMMMMM    MMMM    MM    MM    MMMM    
 
 // CSS FUNCTIONS ___________________________________________________
 
@@ -790,7 +874,12 @@ function showDim(elem ) {
 
 
 
-
+//  MMMMMMMM  MMMMMM          MMMMMMMM  MM    MM  MM    MM    MMMM    MMMMMM  MMMMMM    MMMM    MM    MM    MMMM    
+//  MM        MM    MM        MM        MM    MM  MMMM  MM  MM    MM    MM      MM    MM    MM  MMMM  MM  MM    MM  
+//  MMMMMMMM  MMMMMM          MMMMMMMM  MM    MM  MM  MMMM  MM          MM      MM    MM    MM  MM  MMMM    MM      
+//  MM        MM    MM        MM        MM    MM  MM    MM  MM          MM      MM    MM    MM  MM    MM      MM    
+//  MM        MM    MM        MM        MM    MM  MM    MM  MM    MM    MM      MM    MM    MM  MM    MM  MM    MM  
+//  MM        MMMMMM          MM          MMMM    MM    MM    MMMM      MM    MMMMMM    MMMM    MM    MM    MMMM    
 
 // OTHER FIREBASE FUNCTIONS _______________________________________
 

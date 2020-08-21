@@ -1,11 +1,20 @@
+
+
 "use strict";
 
 
 
 
-// _________________________________________________________________
+
+
+//    MMMM      MMMM    MM    MM  MM    MM  MMMMMM      MMMM    
+//  MM    MM  MM    MM  MM    MM  MMMM  MM  MM    MM  MM    MM  
+//    MM      MM    MM  MM    MM  MM  MMMM  MM    MM    MM      
+//      MM    MM    MM  MM    MM  MM    MM  MM    MM      MM    
+//  MM    MM  MM    MM  MM    MM  MM    MM  MM    MM  MM    MM  
+//    MMMM      MMMM      MMMM    MM    MM  MMMMMM      MMMM    
+
 // _______________________ SOUNDS __________________________________
-// _________________________________________________________________
 
 function defineSound( src, preload = 'auto', controls = 'none' ) {
     let elem = document.createElement('audio');
@@ -28,10 +37,17 @@ function defineSound( src, preload = 'auto', controls = 'none' ) {
 
 
 
-// _________________________________________________________________
-// _______________________ TIME ____________________________________
-// _________________________________________________________________
 
+
+
+//  MMMMMM  MMMMMM  MM      MM  MMMMMMMM  
+//    MM      MM    MMMM  MMMM  MM        
+//    MM      MM    MM  MM  MM  MMMMMMMM  
+//    MM      MM    MM      MM  MM        
+//    MM      MM    MM      MM  MM        
+//    MM    MMMMMM  MM      MM  MMMMMMMM  
+
+// _______________________ TIME ____________________________________
 
 function nowInSeconds() { return Math.floor(Date.now()/1000); }
 
@@ -49,9 +65,16 @@ function secondsToStr( sec ) {
 
 
 
-// _________________________________________________________________
+
+
+//  MMMMMMMM  MMMMMMMM  MMMMMMMM  MMMMMMMM    MMMM    MMMMMM    MMMM    
+//  MM        MM        MM        MM        MM    MM    MM    MM    MM  
+//  MMMMMMMM  MMMMMMMM  MMMMMMMM  MMMMMMMM  MM          MM      MM      
+//  MM        MM        MM        MM        MM          MM        MM    
+//  MM        MM        MM        MM        MM    MM    MM    MM    MM  
+//  MMMMMMMM  MM        MM        MMMMMMMM    MMMM      MM      MMMM    
+
 // _______________________ EFFECTS _________________________________
-// _________________________________________________________________
 
 function addFlashLayer( elem, color = 'red') {
     let position = $(elem).css('position');
@@ -78,9 +101,21 @@ function addFlashLayer( elem, color = 'red') {
 
 
 
-// _________________________________________________________________
+
+
+
+
+
+
+
+//    MMMM    MMMMMM  MMMMMM    MMMMMM  MM    MM    MMMM      MMMM    
+//  MM    MM    MM    MM    MM    MM    MMMM  MM  MM    MM  MM    MM  
+//    MM        MM    MMMMMM      MM    MM  MMMM  MM          MM      
+//      MM      MM    MM    MM    MM    MM    MM  MM  MMMM      MM    
+//  MM    MM    MM    MM    MM    MM    MM    MM  MM    MM  MM    MM  
+//    MMMM      MM    MM    MM  MMMMMM  MM    MM    MMMM      MMMM    
+
 // _______________________ STRINGS _________________________________
-// _________________________________________________________________
 
 function strCamelize(str) {
     return str.replace(/-./g, function(ex) { return ex.charAt(1).toUpperCase(); });
@@ -98,11 +133,15 @@ function strDecamelize(str) {
 
 
 
-// _________________________________________________________________
+
+//    MMMM    MM    MM    MMMM    MMMMMM    MMMMMM    MMMM    MM    MM  MMMMMM    MMMM    
+//  MM    MM  MM    MM  MM    MM  MM    MM    MM    MM    MM  MM    MM    MM    MM    MM  
+//    MM      MMMMMMMM  MM    MM  MMMMMM      MM    MM        MM    MM    MM      MM      
+//      MM    MM    MM  MM    MM  MM    MM    MM    MM        MM    MM    MM        MM    
+//  MM    MM  MM    MM  MM    MM  MM    MM    MM    MM    MM  MM    MM    MM    MM    MM  
+//    MMMM    MM    MM    MMMM    MM    MM    MM      MMMM      MMMM      MM      MMMM    
+
 // _______________________ SHORTCUTS _______________________________
-// _________________________________________________________________
-
-
 
 function toggle( x, st1, st2 ) {
     x = (x==st1) ? st2 : st1;
