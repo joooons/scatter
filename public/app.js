@@ -77,6 +77,7 @@ const colorSet = {
     greenish : "#4FA",
     whiteShade : "rgba(255,255,255,0.3)",
     blackShade : "rgb(0, 0, 0, 0.5)",
+    blackerShade : "rgb(0, 0, 0, 0.7)",
     blueGradient : "linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%)",
     yellowGradient : "linear-gradient(27deg, rgb(239, 190, 0), rgb(236, 221, 15))",
     redGradient : "linear-gradient(120deg, #f093fb 0%, #f5576c 100%)" }
@@ -257,7 +258,6 @@ const style = {
         "font\-size" : "6vh" },
     wordpack : {
         "margin" : "0vh 3vh 0vh 3vh" },
-
     span : {
         // "margin" : "0vh",
         "margin\-bottom" : "2vh",
@@ -265,7 +265,6 @@ const style = {
         "text\-indent" : "-1em"
         // "background" : "green"
         },
-
     input : {
         // "margin" : "0vh",
         "background" : "transparent",
@@ -274,7 +273,6 @@ const style = {
         "color" : colorSet.blueGradient,
         "border" : "none"
         },
-
     popup : {
         "position" : "absolute",
         "left" : "0px",
@@ -287,7 +285,6 @@ const style = {
         "justifyContent" : "center",
         "alignContent" : "center",
         "background" : colorSet.blackShade },
-    
     nameprompt : {
         "position" : "absolute",
         "left" : "0px",
@@ -300,8 +297,7 @@ const style = {
         "justifyContent" : "center",
         "alignContent" : "center",
         "alignItems" : "center",
-        "background" : colorSet.blackShade },
-
+        "background" : colorSet.blackerShade },
     wordcard : {
         "background" : colorSet.yellowGradient,
         "width" : "10vh",
@@ -327,9 +323,8 @@ const style = {
         "justifyContent" : "center",
         "alignContent" : "center",
         "background" : colorSet.blueGradient },
-
     table : {
-        "position" : "absolute",
+        "position" : "fixed",
         "left" : "0px",
         "right" : "0px",
         "top" : "0px",
@@ -340,10 +335,9 @@ const style = {
         // "flexFlow" : "column",
         // "justifyContent" : "center",
         // "alignContent" : "center",
-        "background" : "rgba(255, 255, 255, 0.9)"
-    }
+        "background" : "rgba(255, 255, 255, 1.0)" }
 
-    }
+    }   // END of const style = {...}
 
 
 
@@ -542,7 +536,7 @@ $(wordlist).on('click', function() {
     });
 });
 
-$(dice).on('click', function() {
+$(results).on('click', function() {
     // if (!isAuthorized) return;
     addResultTable(container);
     // resetGameAndPlayers();
@@ -642,12 +636,12 @@ let timeLoop = setInterval( () => {
 
 
 
-//  MMMMMM      MMMM    MM      MM        MMMMMMMM  MM      MMMMMMMM  MM      MM          MMMM    MMMMMM    MMMMMMMM    MMMM    MMMMMM  MMMMMM    MMMM    MM    MM  
-//  MM    MM  MM    MM  MMMM  MMMM        MM        MM      MM        MMMM  MMMM        MM    MM  MM    MM  MM        MM    MM    MM      MM    MM    MM  MMMM  MM  
-//  MM    MM  MM    MM  MM  MM  MM        MMMMMMMM  MM      MMMMMMMM  MM  MM  MM        MM        MMMMMM    MMMMMMMM  MMMMMMMM    MM      MM    MM    MM  MM  MMMM  
-//  MM    MM  MM    MM  MM      MM        MM        MM      MM        MM      MM        MM        MM    MM  MM        MM    MM    MM      MM    MM    MM  MM    MM  
-//  MM    MM  MM    MM  MM      MM        MM        MM      MM        MM      MM        MM    MM  MM    MM  MM        MM    MM    MM      MM    MM    MM  MM    MM  
-//  MMMMMM      MMMM    MM      MM        MMMMMMMM  MMMMMM  MMMMMMMM  MM      MM          MMMM    MM    MM  MMMMMMMM  MM    MM    MM    MMMMMM    MMMM    MM    MM  
+//  MMMMMM      MMMM    MM      MM          MMMM    MMMMMM    MMMMMMMM    MMMM    MMMMMM  MMMMMM    MMMM    MM    MM  
+//  MM    MM  MM    MM  MMMM  MMMM        MM    MM  MM    MM  MM        MM    MM    MM      MM    MM    MM  MMMM  MM  
+//  MM    MM  MM    MM  MM  MM  MM        MM        MMMMMM    MMMMMMMM  MMMMMMMM    MM      MM    MM    MM  MM  MMMM  
+//  MM    MM  MM    MM  MM      MM        MM        MM    MM  MM        MM    MM    MM      MM    MM    MM  MM    MM  
+//  MM    MM  MM    MM  MM      MM        MM    MM  MM    MM  MM        MM    MM    MM      MM    MM    MM  MM    MM  
+//  MMMMMM      MMMM    MM      MM          MMMM    MM    MM  MMMMMMMM  MM    MM    MM    MMMMMM    MMMM    MM    MM  
 
 // DOM ELEMENT CREATION ________________________________________________
 function addCover(elem) {
@@ -731,7 +725,6 @@ function addResultTable(elem) {
         })
 
     }
-    
 
     $(elem).append(newElem);
 }
@@ -758,9 +751,7 @@ function addResultTable(elem) {
 // CSS setup ___________________________________________
 
 addCover(container);
-// applyCSS(document.querySelector("::placeholder"), style.placeholder);
 applyCSS(document.body, style.body );
-
 applyCSS(wall, style.wall );
 applyCSS(container, style.container );
 applyCSS(title, style.box );
@@ -773,7 +764,7 @@ applyCSS(diceJacket, style.dice );
 applyCSS(timer, style.box );
 applyCSS(timer, style.timer );
 applyCSS(results, style.box);
-applyCSS(results, style.results );
+applyCSS(results, style.results, 'RESULTS' );
 applyCSS(setting, style.corner );
 applyCSS(wordlist.children[0], style.wordfirst );
 applyCSS(wordlist.children[1], style.wordframe );
