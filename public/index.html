@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Loaflings</title>
+  <title>SCATTERGORIES!</title>
 
   <link rel='icon' href='hand.png'>
   <link rel="stylesheet" href="style.css">
@@ -17,7 +17,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
   <!-- JQUERY -->
-  <script src="https://code.jquery.com/jquery-git.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-git.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
 
   <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
@@ -35,40 +37,155 @@
 
 
 
+
 <body>
-  
-  <div id="wall">
-    <div id='container'>
-      <div id='title'>
-        <div></div>
-        <div id='setting'></div>
-      </div>
-      <div id='wordlist'>
-        <div></div>
-        <div>
-          <span>
-            <span id="num-1"></span><input type="text" id="input-1" value="" placeholder=""><br>
-            <span id="num-2"></span><input type="text" id="input-2" value="" placeholder=""><br>
-            <span id="num-3"></span><input type="text" id="input-3" value="" placeholder=""><br>
-            <span id="num-4"></span><input type="text" id="input-4" value="" placeholder=""><br>
-            <span id="num-5"></span><input type="text" id="input-5" value="" placeholder=""><br>
-            <span id="num-6"></span><input type="text" id="input-6" value="" placeholder=""><br>
-          </span>
-          <span>
-            <span id="num-7"></span><input type="text" id="input-7" value="" placeholder=""><br>
-            <span id="num-8"></span><input type="text" id="input-8" value="" placeholder=""><br>
-            <span id="num-9"></span><input type="text" id="input-9" value="" placeholder=""><br>
-            <span id="num-10"></span><input type="text" id="input-10" value="" placeholder=""><br>
-            <span id="num-11"></span><input type="text" id="input-11" value="" placeholder=""><br>
-            <span id="num-12"></span><input type="text" id="input-12" value="" placeholder=""><br>
-          </span>
+
+
+<!--  MM      MM    MMMM    MM      MM       -->
+<!--  MM      MM  MM    MM  MM      MM       -->
+<!--  MM      MM  MMMMMMMM  MM      MM       -->
+<!--  MM  MM  MM  MM    MM  MM      MM       -->
+<!--  MM  MM  MM  MM    MM  MM      MM       -->
+<!--    MM  MM    MM    MM  MMMMMM  MMMMMM   -->
+
+  <div id="wall-1" class="wall-block">
+    <div class="wall-flex">
+      <div id='container' class="box">
+        <div id='title-box' class="box">
+          <div id="title">SCATTERGRAA</div>
+          <div id='title-config'>EN</div>
+        </div>
+        <div id='wordlist-box' class="box">
+          <div id="wordlist-header">WORD LIST #17</div>
+          <div id="wordlist-frame">
+            <span id="wordlist-top" class="wordlist-column">
+              <span class="Qnum">1.&nbsp;</span><input type="text" class= "ans" value="" placeholder="fav thing 1"><br>
+              <span class="Qnum">2.&nbsp;</span><input type="text" class= "ans" value="" placeholder="fav things"><br>
+              <span class="Qnum">3.&nbsp;</span><input type="text" class= "ans" value="" placeholder="fav things"><br>
+              <span class="Qnum">4.&nbsp;</span><input type="text" class= "ans" value="" placeholder="fav things"><br>
+              <span class="Qnum">5.&nbsp;</span><input type="text" class= "ans" value="" placeholder="reasons for skipping school/work"><br>
+              <span class="Qnum">6.&nbsp;</span><input type="text" class= "ans" value="" placeholder="fav things"><br>
+            </span>
+            <span id="wordlist-bottom" class="wordlist-column">
+              <span class="Qnum">7.&nbsp;</span><input type="text" class= "ans" value="" placeholder="fav thing 7"><br>
+              <span class="Qnum">8.&nbsp;</span><input type="text" class= "ans" value="" placeholder="fav things"><br>
+              <span class="Qnum">9.&nbsp;</span><input type="text" class= "ans" value="" placeholder="fav things"><br>
+              <span class="Qnum">10.</span><input type="text" class= "ans" value="" placeholder="fav things"><br>
+              <span class="Qnum">11.</span><input type="text" class= "ans" value="" placeholder="fav things"><br>
+              <span class="Qnum">12.</span><input type="text" class= "ans" value="" placeholder="fav things"><br>
+            </span>
+          </div>
+        </div>
+        <div id='dice-box' class="box">
+          <div id='dice'>W</div>
+        </div>
+        <div id="timer-box" class="box">
+          <div id='timer'>1:23</div>
+        </div>
+        <div id="results-box" class="box">
+          <div id="results">reSULts</div>
         </div>
       </div>
-      <div id='diceJacket'><div id='dice'></div></div>
-      <div id='timer'></div>
-      <div id="results"></div>
     </div>
   </div>
+
+
+
+
+
+
+
+
+<!--    MMMM      MMMM    MM      MM  MMMMMMMM  MMMMMM            MM   -->
+<!--  MM    MM  MM    MM  MM      MM  MM        MM    MM        MMMM   -->
+<!--  MM        MM    MM  MM      MM  MMMMMMMM  MMMMMM            MM   -->
+<!--  MM        MM    MM  MM      MM  MM        MM    MM  aaaa    MM   -->
+<!--  MM    MM  MM    MM    MM  MM    MM        MM    MM          MM   -->
+<!--    MMMM      MMMM        MM      MMMMMMMM  MM    MM          MM   -->
+
+  <div id="wall-2" class="wall-block">
+    <div class="wall-flex">
+      <div id="name-box">
+        <div id="name-label">name?</div>
+        <input type="text" id="name" placeholder="nomnom">
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<!--    MMMM      MMMM    MM      MM  MMMMMMMM  MMMMMM            MMMM     -->
+<!--  MM    MM  MM    MM  MM      MM  MM        MM    MM        MM    MM   -->
+<!--  MM        MM    MM  MM      MM  MMMMMMMM  MMMMMM              MM     -->
+<!--  MM        MM    MM  MM      MM  MM        MM    MM  aaaa    MM       -->
+<!--  MM    MM  MM    MM    MM  MM    MM        MM    MM        MM         -->
+<!--    MMMM      MMMM        MM      MMMMMMMM  MM    MM        MMMMMMMM   -->
+
+  <div id="wall-3" class="wall-block">
+    <div class="wall-flex">
+      <div id="data-box">
+        <div id="category-column">col
+          <div id="category-header">wordlist #1</div>
+          <div class="category">1. bla</div>
+          <div class="category">2. bla</div>
+          <div class="category"></div>
+          <div class="category"></div>
+          <div class="category"></div>
+          <div class="category"></div>
+          <div class="category"></div>
+          <div class="category"></div>
+          <div class="category"></div>
+          <div class="category"></div>
+          <div class="category"></div>
+          <div class="category">12.bla</div>
+        </div>
+        <div class="playerdata-column">col
+          <div class="player-name">monk</div>
+          <div class="playerdata">fly</div>
+          <div class="playerdata">farm</div>
+          <div class="playerdata">fresh</div>
+          <div class="playerdata"></div>
+          <div class="playerdata"></div>
+          <div class="playerdata"></div>
+          <div class="playerdata"></div>
+          <div class="playerdata"></div>
+          <div class="playerdata"></div>
+          <div class="playerdata"></div>
+          <div class="playerdata"></div>
+          <div class="playerdata">foiled</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+
+<!--    MMMM      MMMM    MM      MM  MMMMMMMM  MMMMMM          MMMMMMMM   -->
+<!--  MM    MM  MM    MM  MM      MM  MM        MM    MM              MM   -->
+<!--  MM        MM    MM  MM      MM  MMMMMMMM  MMMMMM              MM     -->
+<!--  MM        MM    MM  MM      MM  MM        MM    MM  aaaa        MM   -->
+<!--  MM    MM  MM    MM    MM  MM    MM        MM    MM        MM    MM   -->
+<!--    MMMM      MMMM        MM      MMMMMMMM  MM    MM          MMMM     -->
+
+<div id="wall-4" class="wall-block">
+  <div class="wall-flex">
+    <div id="card-box">
+      <div class="card">card#1</div>
+      <div class="card">card#2</div>
+      <div class="card">card#3</div>
+      <div class="card">card#4</div>
+      <div class="card">card#5</div>
+      <div class="card">card#6</div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -93,8 +210,9 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
   </script>
-  <script src='toolBox.js'></script>
-  <script src='app.js'></script>
+  <!-- <script src='toolBox.js'></script> -->
+  <!-- <script src='app.js'></script> -->
+  <script src='test.js'></script>
 
 </body>
 </html>
