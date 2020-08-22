@@ -50,13 +50,15 @@ const name              = document.getElementById('name');
 
 const wall3             = document.getElementById('wall-3');
 const dataBox           = document.getElementById('data-box');
-const categoryColumn    = document.getElementById('category-column');
+const dataRowScroll     = document.getElementById('data-row-scroll');
+const dataRowFrame      = document.getElementById('data-row-frame');
+const categoryData      = document.getElementById('category-data');
 const categoryHeader    = document.getElementById('category-header');
 const category          = document.getElementsByClassName('category');
 
-const playerdataColumn  = document.getElementsByClassName('playerdata-column');
-const playerName        = document.getElementsByClassName('player-name');
 const playerdata        = document.getElementsByClassName('playerdata');
+const playerName        = document.getElementsByClassName('player-name');
+const playerAns         = document.getElementsByClassName('player-ans');
 
 const wall4             = document.getElementById('wall-4');
 const cardBox           = document.getElementById('card-box');
@@ -65,11 +67,7 @@ const card              = document.getElementsByClassName('card');
 
 
 
-showElem(wall1);
-
-function showElem(elem) { $(elem).fadeIn(500); }
-
-function hideElem(elem) { $(elem).fadeOut(500); }
+showWall(wall1);
 
 function showWall(elem) {
     let walls = document.getElementsByClassName('wall-block');
@@ -79,8 +77,15 @@ function showWall(elem) {
 
 
 function setFont(font) {
-    for ( i=0 ; i<ans.length ; i++ ) { ans[i].style.fontFamily = font; }
+    // Either enter font.EN or font.KR
+    // Only the relevant elements will be modified to have this font.
+    for ( i=0 ; i<ans.length ; i++ ) { 
+        ans[i].style.fontFamily = font; 
+        category[i].style.fontFamily = font;
+        playerAns[i].style.fontFamily = font;
+    }
     dice.style.fontFamily = font;
+    
 }
 
 function flattenWordlistFrame() {

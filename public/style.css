@@ -18,6 +18,8 @@
     --blueGradient : linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
     --yellowGradient : linear-gradient(27deg, rgb(239, 190, 0), rgb(236, 221, 15));
     --redGradient : linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+    --greenGradient : linear-gradient( 110.1deg,  rgba(34,126,34,1) 2.9%, rgba(168,251,60,1) 90.3% );
+    --grayGradient : linear-gradient( 110.3deg,  rgba(72,85,99,1) 8.8%, rgba(127,146,166,1) 95.1% );
 
     --fontEN :  'Boogaloo', cursive;
     --fontKR :  'Jua', sans-serif;
@@ -97,11 +99,11 @@ input::placeholder {
 }
 
 #wall-3 {
-    background-image : var(--yellowGradient);
+    background-image : var(--grayGradient);
 }
 
 #wall-4 {
-    background: var(--greenish);
+    background-image : var(--greenGradient);
 }
 
 
@@ -138,21 +140,26 @@ input::placeholder {
 /*    MM    MMMMMM    MM    MMMMMM  MMMMMMMM   */
 
 #title-box {
+    position: relative;
     grid-row : 1/2;
     grid-column : 1/3;
 }
 
-/* #setting {
+#title {
+    /* something */
+}
+
+#title-config {
     position : absolute;
     top : 0px;
     right : 0px;
-    width : 8vh;
-    height : 7vh;
+    width : 4vh;
+    height : 3vh;
     border-radius : 0vh 0vh 0vh 2vh;
     background-color : var(--whiteShade);
     text-align : center;
     color : var(--blackShade);
-} */
+}
 
 
 
@@ -172,6 +179,10 @@ input::placeholder {
 #dice-box {
     grid-row : 2/3;
     grid-column : 2/3;
+}
+
+#dice {
+    /* something */
 }
 
 
@@ -196,6 +207,10 @@ input::placeholder {
     grid-column : 2/3;
 }
 
+#timer {
+    /* something */
+}
+
 
 
 
@@ -216,6 +231,10 @@ input::placeholder {
 #results-box {
     grid-row : 4/5;
     grid-column : 2/3;
+}
+
+#results {
+    /* something */
 }
 
 
@@ -239,12 +258,6 @@ input::placeholder {
     align-items : flex-start;
 }
 
-#wordlist-frame {
-    display: flex;
-    flex-flow: column;
-}
-
-
 /* #wordlist-header {
     margin : 2vh;
     width : 100%;
@@ -252,35 +265,81 @@ input::placeholder {
     text-decoration : underline;
 } */
 
+#wordlist-frame {
+    display: flex;
+    flex-flow: column;
+}
 
 
 
 
-/* #wordlist {
-    margin : 2vh;
-    display : flex;
-    flex-flow : row;
-} */
-
-/* .wordlist-column {
-    margin : 0vh 3vh 0vh 3vh;
-} */
 
 
 
 
-/*  MMMMMMMM  MM    MM    MMMM                      MM    MM    MMMM    MMMMMM     */
-/*  MM        MMMM  MM  MM    MM                    MM  MM    MM    MM  MM    MM   */
-/*  MMMMMMMM  MM  MMMM  MM                          MMMM      MM    MM  MMMMMM     */
-/*  MM        MM    MM  MM  MMMM        aaaa        MM  MM    MM    MM  MM    MM   */
-/*  MM        MM    MM  MM    MM                    MM    MM  MM    MM  MM    MM   */
-/*  MMMMMMMM  MM    MM    MMMM                      MM    MM    MMMM    MM    MM   */
 
 
 
-.EN { font-family : var(--fontEN); }
 
-.KR { font-family : var(--fontKR); }
+
+
+/*  MMMMMM      MMMM    MMMMMM    MMMM    MMMMMM      MMMM    MM      MM   */
+/*  MM    MM  MM    MM    MM    MM    MM  MM    MM  MM    MM    MM  MM     */
+/*  MM    MM  MMMMMMMM    MM    MMMMMMMM  MMMMMM    MM    MM      MM       */
+/*  MM    MM  MM    MM    MM    MM    MM  MM    MM  MM    MM    MM  MM     */
+/*  MM    MM  MM    MM    MM    MM    MM  MM    MM  MM    MM  MM      MM   */
+/*  MMMMMM    MM    MM    MM    MM    MM  MMMMMM      MMMM    MM      MM   */
+
+#data-box {
+    position: relative;
+    width: 80%;
+    height: 80%;
+}
+
+#data-row-scroll {
+    position: absolute;
+    padding:1vh;
+    width: 90%;
+    height: 90%;
+    background: #0001;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+#data-row-frame {
+    display: flex;
+    flex-flow: row;
+    width: 700px;
+    background: white;
+}
+
+
+
+
+
+
+
+
+
+/*    MMMM      MMMM    MMMMMM    MMMMMM    MMMMMM      MMMM    MM      MM   */
+/*  MM    MM  MM    MM  MM    MM  MM    MM  MM    MM  MM    MM    MM  MM     */
+/*  MM        MMMMMMMM  MMMMMM    MM    MM  MMMMMM    MM    MM      MM       */
+/*  MM        MM    MM  MM    MM  MM    MM  MM    MM  MM    MM    MM  MM     */
+/*  MM    MM  MM    MM  MM    MM  MM    MM  MM    MM  MM    MM  MM      MM   */
+/*    MMMM    MM    MM  MM    MM  MMMMMM    MMMMMM      MMMM    MM      MM   */
+
+#card-box {
+    background: #0002;
+    width: 90%;
+    height: 90%;
+    padding: 5vh;
+    box-sizing: border-box;
+    border-radius: 5vh;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+
 
 
 
@@ -348,100 +407,18 @@ input::placeholder {
 }
 
 
-
-
-
-
-
-
-
-.Qnum {
-    /* something...? */
+.column {
+    background: pink;
+    width:32vh;
+    border-radius: 1vh;
+    margin:1vh;
 }
 
-.ans {
-    /* something */
+.card {
+    /* width: 20%;? */
 }
 
 
-
-/* .popup {
-    position : absolute;
-    left : 0px;
-    right : 0px;
-    top : 0px;
-    bottom : 0px;
-    padding : 7vh;
-    display : flex;
-    flex-flow : row wrap;
-    justify-content : center;
-    align-content : center;
-    background : var(--blackShade);
-} */
-
-
-/* .nameprompt {
-    position : absolute;
-    left : 0px;
-    right : 0px;
-    top : 0px;
-    bottom : 0px;
-    padding : 0 20vw 0 20vw;
-    display : flex;
-    flex-flow : row;
-    justify-content : center;
-    align-content : center;
-    align-items : center;
-    background : var(--blackerShade);
-} */
-
-
-
-
-
-/* .wordcard {
-    background : var(--yellowGradient);
-    width : 10vh;
-    height : 15vh;
-    margin : 1vh;
-    padding : 1vh;
-    display : block;
-    border-radius : 1vh;
-    box-shadow : 2px 4px 2px rgba(0,0,0,0.5);
-    display : flex;
-    justify-content : center;
-    font-size : 1em;
-    cursor : pointer;
-} */
-
-
-
-/* .cover {
-    position : absolute;
-    left : 0px;
-    right : 0px;
-    top : 0px;
-    bottom : 0px;
-    padding : 7vh;
-    display : flex;
-    flex-flow : row wrap;
-    justify-content : center;
-    align-content : center;
-} */
-
-
-
-/* .table {
-    position : fixed;
-    left : 0px;
-    right : 0px;
-    top : 0px;
-    bottom : 0px;
-    padding : 10vh;
-    display : grid;
-    grid-template-columns : auto auto auto auto;
-    background : rgba(255, 255, 255, 1.0);
-}  */
 
 
 
