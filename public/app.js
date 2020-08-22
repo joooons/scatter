@@ -164,7 +164,7 @@ const results       = document.getElementById('results');
 
 const style = {
     body : {
-        "background\-image" : colorSet.blueGradient,
+        // "background\-image" : colorSet.blueGradient,
         },
     wall : {
         "user\-select" : "none",
@@ -321,8 +321,9 @@ const style = {
         "display" : "flex",
         "flexFlow" : "row wrap",
         "justifyContent" : "center",
-        "alignContent" : "center",
-        "background" : colorSet.blueGradient },
+        "alignContent" : "center"
+        // "background" : colorSet.blueGradient 
+        },
     table : {
         "position" : "fixed",
         "left" : "0px",
@@ -814,6 +815,8 @@ function adoptToScreen(ratio) {
     } else { fillPopupCSS(1, 'vh' ); }
 
     function fillCSS(k, b, u, flow) {
+        return;
+
         container.style.margin = (b) + u;
         container.style.borderRadius = (2*b) + u;
         
