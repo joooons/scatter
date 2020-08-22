@@ -67,7 +67,34 @@ const card              = document.getElementsByClassName('card');
 
 
 
+
+
+
+
+
+
+
+
 showWall(wall1);
+useThisUnit('vh');
+resize();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function showWall(elem) {
     let walls = document.getElementsByClassName('wall-block');
@@ -88,12 +115,96 @@ function setFont(font) {
     
 }
 
-function flattenWordlistFrame() {
-    wordlistFrame.style.flexFlow = 'row';
-    wordlistBottom.style.marginLeft = '1vh';
+
+
+
+document.addEventListener('keydown', ev => {
+    if (ev.keyCode == 38) {
+        console.log('up');
+        makeWordlistStraight();
+        useThisUnit('vw');
+    }
+    if (ev.keyCode == 37) {
+        console.log('left');
+        makeWordlistFlat();
+        useThisUnit('vh');
+    }
+    if (ev.keyCode == 40) {
+        console.log('down');
+        makeWordlistFlat();
+        useThisUnit('mid');
+    }
+});
+
+
+
+
+window.onresize = () => { 
+    resize();
 }
 
-function straightenWordlistFrame() {
+
+function resize() {
+    let ratio = Number.parseFloat(window.innerHeight / window.innerWidth).toPrecision(2);
+    if ( ratio < 0.48 ) {
+        console.log('left');
+        makeWordlistFlat();
+        useThisUnit('vh');
+    } else if ( ratio > 1.34 ) {
+        console.log('up');
+        makeWordlistStraight();
+        useThisUnit('vw');
+    } else {
+        console.log('down');
+        makeWordlistFlat();
+        useThisUnit('mid');
+    }
+}
+
+
+
+
+function useThisUnit(text) {
+    let arr = ['vh','vw','mid'];
+    if (!arr.includes(text)) return;
+
+    function removeAdd(elem) {
+        arr.forEach( unit => {
+            elem.classList.remove(unit);
+        });;
+        elem.classList.add(text);
+    }
+
+    for ( i=0 ; i<12 ; i++ ) { 
+        removeAdd(ans[i]);
+        removeAdd(Qnum[i]);
+    }
+
+    removeAdd(container);
+    removeAdd(titleBox);
+    removeAdd(title);
+    removeAdd(titleConfig);
+    removeAdd(diceBox);
+    removeAdd(dice);
+
+    removeAdd(timerBox);
+    removeAdd(timer);
+    removeAdd(resultsBox);
+    removeAdd(results);
+    removeAdd(wordlistBox);
+    removeAdd(wordlistHeader);
+
+}
+
+
+
+
+function makeWordlistFlat() {
+    wordlistFrame.style.flexFlow = 'row';
+    wordlistBottom.style.marginLeft = '2vh';
+}
+
+function makeWordlistStraight() {
     wordlistFrame.style.flexFlow = 'column';
-    wordlistBottom.style.marginLeft = '0vh';
+    wordlistBottom.style.marginLeft = '0vw';
 }

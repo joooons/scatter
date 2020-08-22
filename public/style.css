@@ -44,35 +44,22 @@
 
 body {
     user-select : none;
+    box-sizing: border-box;
     font-family: var(--fontEN);
     /* don't put background color or image here. it gets weird. */
 }
 
-
-
 input {
     color: #00aeff;
     border: none;
-    border-radius: 0.5vh;
     font-family: var(--fontEN);
 }
+
+
 
 input::placeholder {
     color: black;
 }
-
-
-/* span {
-    margin-bottom : 2vh;
-    text-indent : -1em;
-} */
-
-
-/* .input {
-    background : transparent;
-    font-size : 4vh;
-    border : none;
-} */
 
 
 
@@ -123,9 +110,32 @@ input::placeholder {
     display : grid;
     grid-template-columns : auto auto;
     grid-template-rows : auto auto auto auto auto;
+    align-items: start;
+    align-content: start;
+    width: auto;
+    height: auto;
 }
 
+#container.vh {
+    gap: 2vh;
+    padding : 4vh;
+    border-radius : 4vh;
+    box-shadow : 1vh 1vh 4vh rgba(150,0,0,0.3);
+}
 
+#container.vw {
+    gap: 2vw;
+    padding : 3vw;
+    border-radius : 4vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
+}
+
+#container.mid {
+    gap: 2vw;
+    padding : 2vw;
+    border-radius : 3vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
+}
 
 
 
@@ -145,28 +155,66 @@ input::placeholder {
     grid-column : 1/3;
 }
 
-#title {
-    /* something */
+#title-box.vh {
+    padding : 1vh;
+    border-radius : 3vh;
+    box-shadow : 1vh 1vh 4vh rgba(150,0,0,0.3);
+}
+
+#title-box.vw {
+    padding : 1vw;
+    border-radius : 3vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
+}
+
+#title-box.mid {
+    padding : 1vw;
+    border-radius : 2vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
+}
+
+#title.vh {
+    font-size: 10vh;
+}
+
+#title.vw {
+    font-size: 8vw;
+}
+
+#title.mid {
+    font-size: 6vw;
 }
 
 #title-config {
     position : absolute;
     top : 0px;
     right : 0px;
-    width : 4vh;
-    height : 3vh;
-    border-radius : 0vh 0vh 0vh 2vh;
-    background-color : var(--whiteShade);
+    /* background-color : var(--whiteShade); */
+    background: red;
     text-align : center;
     color : var(--blackShade);
 }
 
+#title-config.vh {
+    font-size: 7vh;
+    width : 10vh;
+    height : 8vh;
+    border-radius : 0vh 0vh 0vh 3vh;
+}
 
+#title-config.vw {
+    font-size: 4vw;
+    width : 6vw;
+    height : 5vw;
+    border-radius : 0vw 0vw 0vw 1.5vw;
+}
 
-
-
-
-
+#title-config.mid {
+    font-size: 3vw;
+    width : 5vw;
+    height : 4vw;
+    border-radius : 0vw 0vw 0vw 1.5vw;
+}
 
 
 /*  MMMMMM    MMMMMM    MMMM    MMMMMMMM   */
@@ -181,11 +229,36 @@ input::placeholder {
     grid-column : 2/3;
 }
 
-#dice {
-    /* something */
+#dice-box.vh {
+    padding : 2vh;
+    border-radius : 3vh;
+    box-shadow : 1vh 1vh 3vh rgba(150,0,0,0.3);
+}
+
+#dice-box.vw {
+    padding : 2vw;
+    border-radius : 3vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
+}
+
+#dice-box.mid {
+    padding : 2vw;
+    border-radius : 2vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
 }
 
 
+#dice.vh {
+    font-size: 12vh;
+}
+
+#dice.vw {
+    font-size: 8vw;
+}
+
+#dice.mid {
+    font-size: 6vw;
+}
 
 
 
@@ -207,13 +280,35 @@ input::placeholder {
     grid-column : 2/3;
 }
 
-#timer {
-    /* something */
+#timer-box.vh {
+    padding : 2vh;
+    border-radius : 3vh;
+    box-shadow : 1vh 1vh 3vh rgba(150,0,0,0.3);
 }
 
+#timer-box.vw {
+    padding : 2vw;
+    border-radius : 3vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
+}
 
+#timer-box.mid {
+    padding : 2vw;
+    border-radius : 2vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
+}
 
+#timer.vh {
+    font-size: 7vh;
+}
 
+#timer.vw {
+    font-size: 5vw;
+}
+
+#timer.mid {
+    font-size: 3vw;
+}
 
 
 
@@ -233,12 +328,35 @@ input::placeholder {
     grid-column : 2/3;
 }
 
-#results {
-    /* something */
+#results-box.vh {
+    padding : 2vh;
+    border-radius : 3vh;
+    box-shadow : 1vh 1vh 3vh rgba(150,0,0,0.3);
 }
 
+#results-box.vw {
+    padding : 2vw;
+    border-radius : 3vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
+}
 
+#results-box.mid {
+    padding : 2vw;
+    border-radius : 2vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
+}
 
+#results.vh {
+    font-size: 6vh;
+}
+
+#results.vw {
+    font-size: 5vw;
+}
+
+#results.mid {
+    font-size: 3vw;
+}
 
 
 
@@ -258,12 +376,46 @@ input::placeholder {
     align-items : flex-start;
 }
 
-/* #wordlist-header {
-    margin : 2vh;
+#wordlist-box.vh {
+    padding : 2vh;
+    border-radius : 3vh;
+    box-shadow : 1vh 1vh 3vh rgba(150,0,0,0.3);
+}
+
+#wordlist-box.vw {
+    padding : 2vw;
+    border-radius : 3vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
+}
+
+#wordlist-box.mid {
+    padding : 2vw;
+    border-radius : 2vw;
+    box-shadow : 1vw 1vw 3vw rgba(150,0,0,0.3);
+}
+
+
+
+#wordlist-header {
     width : 100%;
     text-align : center;
     text-decoration : underline;
-} */
+}
+
+#wordlist-header.vh {
+    margin-bottom : 1vh;
+    font-size: 6vh;
+}
+
+#wordlist-header.vw {
+    margin-bottom : 1vw;
+    font-size: 5vw;
+}
+
+#wordlist-header.mid {
+    margin-bottom : 1vw;
+    font-size: 3vw;
+}
 
 #wordlist-frame {
     display: flex;
@@ -271,11 +423,42 @@ input::placeholder {
 }
 
 
+.Qnum.vh {
+    font-size: 6vh;
+}
 
+.Qnum.vw {
+    font-size: 5vw;
+}
 
+.Qnum.mid {
+    font-size: 3vw;
+}
 
+.ans {
+    background: #fff6;
+}
 
+.ans.vh {
+    font-size: 6vh;
+    border-radius: 0.5vh;
+    width: 62vh;
+    margin: 0.5vh;
+}
 
+.ans.vw {
+    font-size: 5vw;
+    border-radius: 0.5vw;
+    width: 52vw;
+    margin: 0.5vw;
+}
+
+.ans.mid {
+    font-size: 3vw;
+    border-radius: 0.5vw;
+    width: 30vw;
+    margin: 0.5vw;
+}
 
 
 
@@ -333,7 +516,6 @@ input::placeholder {
     width: 90%;
     height: 90%;
     padding: 5vh;
-    box-sizing: border-box;
     border-radius: 5vh;
     display: grid;
     grid-template-columns: auto auto auto;
@@ -392,11 +574,10 @@ input::placeholder {
 
 .box {
     cursor : pointer;
-    /* position : relative; */
-    margin : 1vh;
+    /* margin : 1vh;
     padding : 1vh;
     border-radius : 2vh;
-    box-shadow : 1vh 1vh 3vh rgba(150,0,0,0.3);
+    box-shadow : 1vh 1vh 3vh rgba(150,0,0,0.3); */
     background : var(--yellowGradient);
     overflow-x : hidden;
     overflow-y : hidden;
@@ -415,7 +596,7 @@ input::placeholder {
 }
 
 .card {
-    /* width: 20%;? */
+    font-size: 2em;
 }
 
 
