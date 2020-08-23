@@ -83,122 +83,9 @@ const listen = {
 
 
 
-$(results).on('click', function() {
-    // if (!isAuthorized) return;
-    addResultTable(container);
-    // resetGameAndPlayers();
-})
 
 
 
-
-
-
-
-$(timer).on('click', function() {
-    if (!isAuthorized) return;
-    soundButtonClick.play();
-    if (endTime > nowTime) {
-        // THE GAME ENDED
-        endTime = 0;
-        $(timer).text("00:00");
-        isClockTicking = false;
-    } else {
-        // YOU STARTED THE GAME
-        isClockTicking = true;
-        resetGameAndPlayers();
-        let arr = letterList[letterList.index];
-        let rand = Math.floor( Math.random() * Math.floor(arr.length) );
-        let letter = arr[rand];
-        db.collection('dice').doc(diceID).update({
-            letter : letter
-        });
-        db.collection('game').doc(gameID).update({
-            started : true
-        })
-        endTime = futureInSeconds(timeLimit);
-        $(timer).text(secondsToStr(timeLimit));
-    }
-    db.collection('timer').doc(timerID).update({
-        endTime : endTime
-    });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  MMMMMM      MMMM    MM      MM          MMMM    MMMMMM    MMMMMMMM    MMMM    MMMMMM  MMMMMM    MMMM    MM    MM  
-//  MM    MM  MM    MM  MMMM  MMMM        MM    MM  MM    MM  MM        MM    MM    MM      MM    MM    MM  MMMM  MM  
-//  MM    MM  MM    MM  MM  MM  MM        MM        MMMMMM    MMMMMMMM  MMMMMMMM    MM      MM    MM    MM  MM  MMMM  
-//  MM    MM  MM    MM  MM      MM        MM        MM    MM  MM        MM    MM    MM      MM    MM    MM  MM    MM  
-//  MM    MM  MM    MM  MM      MM        MM    MM  MM    MM  MM        MM    MM    MM      MM    MM    MM  MM    MM  
-//  MMMMMM      MMMM    MM      MM          MMMM    MM    MM  MMMMMMMM  MM    MM    MM    MMMMMM    MMMM    MM    MM  
-
-
-
-
-
-
-
-
-function addResultTable(elem) {
-    let num = playerRoster.length + 1;
-    let newElem = document.createElement('div');
-
-    // applyCSS(newElem, style.table);
-    newElem.style.gridTemplateColumns = `repeat(${num}, auto)`;
-    newElem.onclick = () => {newElem.remove(); }
-
-    let sub = document.createElement('div');
-    $(newElem).append(sub);
-
-    for (i=0 ; i<num-1 ; i++) {
-        let a = document.createElement('div');
-        a.innerHTML = playerRoster[i];
-        $(newElem).append(a);
-    }
-    
-    for (i=1; i<=12; i++) {
-        let a = document.createElement('div');
-        a.innerHTML = categories[i-1];
-        $(newElem).append(a);
-
-        playerRoster.forEach( (val) => {
-            let b = document.createElement('div');
-            let arr = resultMap[val];
-            b.innerHTML = arr[i-1];
-            $(newElem).append(b);
-        })
-
-    }
-
-    $(elem).append(newElem);
-}
 
 
 
@@ -228,24 +115,6 @@ function addResultTable(elem) {
 
 // OTHER FIREBASE FUNCTIONS _______________________________________
 
-function resetGameAndPlayers() {
-
-    db.collection('game').doc(gameID).update({
-        started : false
-    });
-    
-    db.collection('players').get().then( snap => {
-        snap.docs.forEach( doc => {
-            // console.log(doc.id, doc.data().player, doc.data().status);
-            db.collection('players').doc(doc.id).delete();
-        })
-    })
-
-    for (i=1 ; i<=12 ; i++) {
-        $(`#input-${i}`).val('');
-    }
-    
-}
 
 
 

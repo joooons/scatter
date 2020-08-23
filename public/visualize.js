@@ -93,7 +93,7 @@ const card              = document.getElementsByClassName('card');
 //    MM    MM    MM    MM      MM      MM    MM    MM  MM        MM    MM          MM        
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
-showWall(wall1);
+showWall(wall2);
 useThisUnit('vh');
 resize();
 
@@ -148,7 +148,7 @@ function setFont(font) {
     for ( i=0 ; i<ans.length ; i++ ) { 
         ans[i].style.fontFamily = font; 
         category[i].style.fontFamily = font;
-        playerAns[i].style.fontFamily = font;
+        if (playerAns.length > 0) playerAns[i].style.fontFamily = font;
     }
     dice.style.fontFamily = font;
 }

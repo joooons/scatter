@@ -17,32 +17,30 @@ console.log('interactive.js at your service!');
 var playerName = '';
 var isAuthorized = false;
 
-
 var greenish = "#4FA";
 var redish = "#F35";
 
-
-// var timeLimit = 180;
-var timeLimit = 10;
+var timeLimit = 40;
 var nowTime = nowInSeconds();
 var endTime = 0;
-var wordListIndex = 0;
-var stopLoop = false;
-
+var stopLoop = false;           // This will never be used.
 var isClockTicking = false;
 
+var wordListIndex = 0;
 var letterList = {
     index : 'EN',
     EN : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     KR : 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ'  }
 
-
 var categories = [];
 var playerRoster = [];
-
-
-
 var resultMap = new Map();    // WHAT IS THIS???
+
+
+
+
+
+
 
 
 
@@ -128,14 +126,12 @@ db.collection('game').limit(1).get()
 db.collection('dice').onSnapshot( snap => { 
     $(dice).html(snap.docs[0].data().letter); 
     blinkOnce('dice');
-    // listen.tick(12);
 });
 
 db.collection('timer').onSnapshot( snap => { 
     endTime = snap.docs[0].data().endTime;
     $(timer).text(secondsToStr(timeLimit));
     blinkOnce('timer');
-    // listen.tick(13);
 });
 
 db.collection('wordlist').onSnapshot( snap => { 
@@ -148,21 +144,15 @@ db.collection('wordlist').onSnapshot( snap => {
         $(titleConfig).html(letterList.index);
         setFont(font[letterList.index]);
         db.collection('dice').doc(diceID).update({ letter : '?' });
-
         wordlistHeader.innerText = `Word List #${num}`;
-        categoryHeader.innerText = `Word List #${num}`;
-
         let set = `${letterList.index}${num}`;
         db.collection('wordlist').where( 'set', '==', set).get().then( snap => {
             snap.docs.forEach( (doc, i) => { 
                 $('.ans').eq(i).attr("placeholder", `${doc.data().phrase}`); 
                 $('.ans').eq(i).val(''); 
-                $('.category').eq(i).html(`${doc.data().phrase}`);
                 categories.push(doc.data().phrase);
-                // listen.tick(i);
             });
         });
-
     });
 });
 
@@ -170,45 +160,42 @@ db.collection('game').onSnapshot( snap => {
     if (playerName == '') return;
     if (snap.docs[0].data().started) {
 
-        console.log('detected that game started');
-        console.log(playerName, ' is in the game.');
+        removePlayerData();
+        for ( i=0 ; i<12 ; i++ ) { $('.ans').eq(i).val(''); }
+        
+        // resetGameAndPlayers();
 
         db.collection('players').add({
             player : playerName,
             status : "ready"
         })
         .then( () => {
-            console.log('document was added');
             db.collection('players').where('player', '==', playerName).get()
             .then( res => {
                 playerID = res.docs[0].id;
                 console.log(playerID);
-            })
+            });
         });
     }
 });
 
-
-
-
 db.collection('players').onSnapshot( snap => {
     if (playerName == '') return;
-    
-    let allDone = 4;
-
+    let num = 1;
+    let allDone = false;
     snap.docs.forEach( doc => {
-        if (doc.data().status == 'done') { allDone *= 2; } 
-        else { allDone *= 0; }
+        if (doc.data().status == 'done') { num *= 1; } 
+        else { num *= 0; }
     });
+    allDone = (num == 0) ? false : true;
+    
+    console.log('is everyone done? ', allDone);
 
-    console.log('all done? ', allDone);
-
-    if (allDone == 0) {
+    if (allDone) {
         playerRoster = [];
         snap.docs.forEach( doc => {
-
-            playerRoster.push( doc.data().player);
             let arr = [];
+            playerRoster.push( doc.data().player);
             arr.push(doc.data().word01);
             arr.push(doc.data().word02);
             arr.push(doc.data().word03);
@@ -221,10 +208,9 @@ db.collection('players').onSnapshot( snap => {
             arr.push(doc.data().word10);
             arr.push(doc.data().word11);
             arr.push(doc.data().word12);
-            
-            resultMap[doc.data().player] = arr;
-
+            resultMap.set( doc.data().player, arr );
         });
+        fillResultBoard();
     } 
 });
 
@@ -271,47 +257,54 @@ title.onclick = () => {
 }
 
 titleConfig.onclick = () => {
-    // ev.stopPropagation();
     if (!isAuthorized) return;
     if (isClockTicking) return;
-
-
     soundButtonClick.play();
     letterList.index = { EN : 'KR', KR : 'EN' }[letterList.index];
-    db.collection('wordlist').doc(wordlistID).update({
-        language : letterList.index
-    });
+    db.collection('wordlist').doc(wordlistID).update({ language : letterList.index });
 }
 
 wordlistHeader.onclick = () => {    
     if (isClockTicking) return;
     if (!isAuthorized) return;
     soundButtonClick.play();
-
     showWall(wall4);
-
 }
 
-results.onclick = () => {
-    // if (!isAuthorized) return;
-    console.log('clidk');
-    showWall(wall3);
+timer.onclick = () => {
+    if (!isAuthorized) return;
+    soundButtonClick.play();
+    if (endTime > nowTime) {
+        // If the timer is counting down already, and then you click on it...
+        // ...the game will stop. That's what you just did.
+        endTime = 0;
+        isClockTicking = false;
+        console.log('clicked on timer');
+        db.collection('game').doc(gameID).update({ started : false });
+    } else {
+        // If the timer just says START and then you click on it...
+        // ...the timer will start counting down. That's what you just did.
+        isClockTicking = true;
+        resetGameAndPlayers();
+        console.log('clicked on timer');
+        let letter = randomLetter();
+        db.collection('dice').doc(diceID).update({ letter : letter });
+        db.collection('game').doc(gameID).update({ started : true });
+        endTime = futureInSeconds(timeLimit);
+        $(timer).text(secondsToStr(timeLimit));
+    }
+    db.collection('timer').doc(timerID).update({ endTime : endTime });
 }
 
-dataBox.onclick = () => {
-    showWall(wall1);
-}
+results.onclick = () => { showWall(wall3); }
 
-
+dataBox.onclick = () => { showWall(wall1); }
 
 $('.card').on('click', ev => {
     let str = ev.target.innerText;
     let char = str.slice(5,6);
     let num = parseInt(char);
-    console.log(char);
-    db.collection('wordlist').doc(wordlistID).update({
-        number : num
-    });
+    db.collection('wordlist').doc(wordlistID).update({ number : num });
     showWall(wall1);
 });
 
@@ -319,6 +312,46 @@ $('.card').on('click', ev => {
 
 
 
+
+
+
+
+//  MMMMMMMM  MM    MM  MM    MM    MMMM    MMMMMM  MMMMMM    MMMM    MM    MM    MMMM    
+//  MM        MM    MM  MMMM  MM  MM    MM    MM      MM    MM    MM  MMMM  MM  MM    MM  
+//  MMMMMMMM  MM    MM  MM  MMMM  MM          MM      MM    MM    MM  MM  MMMM    MM      
+//  MM        MM    MM  MM    MM  MM          MM      MM    MM    MM  MM    MM      MM    
+//  MM        MM    MM  MM    MM  MM    MM    MM      MM    MM    MM  MM    MM  MM    MM  
+//  MM          MMMM    MM    MM    MMMM      MM    MMMMMM    MMMM    MM    MM    MMMM    
+
+
+function randomLetter() {
+    let arr = letterList[letterList.index];
+    let rand = Math.floor( Math.random() * Math.floor(arr.length) );
+    return arr[rand];
+}
+
+function resetGameAndPlayers() {
+    db.collection('players').get().then( snap => {
+        snap.docs.forEach( doc => { db.collection('players').doc(doc.id).delete(); });
+    });
+        // remove all players data from database
+    removePlayerData();
+        // remove player answer columns in wall4
+    for ( i=0 ; i<12 ; i++ ) { $('.ans').eq(i).val(''); }
+        // remove all answers on wall1.
+}
+
+function fillResultBoard() {
+    removePlayerData();
+    categoryHeader.innerText = wordlistHeader.innerText;
+    for ( i=0 ; i<12 ; i++ ) {
+        $('.category').eq(i).html( $('.ans').eq(i).attr('placeholder') );
+    }
+    playerRoster.forEach( player => {
+        let arr = resultMap.get(player); 
+        addPlayerData( player , arr);
+    });
+}
 
 
 
@@ -341,27 +374,32 @@ let timeLoop = setInterval( () => {
     let str = (endTime > nowTime) ? secondsToStr(endTime - nowTime) : "START";
     $(timer).text(str);
     if (endTime == nowTime) {
-        endTime -= 1;
+        let arr = [];
+        endTime = nowTime  - 1;
         soundTimerEnd.play();
-        addFlashLayer(timer, colorSet.redish);
-        
-        // db.collection('players').doc(playerID).update({
-        //     "word01" : $('#input-1').val(),
-        //     "word02" : $('#input-2').val(),
-        //     "word03" : $('#input-3').val(),
-        //     "word04" : $('#input-4').val(),
-        //     "word05" : $('#input-5').val(),
-        //     "word06" : $('#input-6').val(),
-        //     "word07" : $('#input-7').val(),
-        //     "word08" : $('#input-8').val(),
-        //     "word09" : $('#input-9').val(),
-        //     "word10" : $('#input-10').val(),
-        //     "word11" : $('#input-11').val(),
-        //     "word12" : $('#input-12').val(),
-        //     "player" : playerName,
-        //     "status" : "done"
-        // });
-
+        isClockTicking = false;
+        blinkOnce('timer');
+        for ( i=0 ; i<12 ; i++ ) {
+            if ( $('.ans').eq(i).val() == '' ) { arr.push('-'); }
+            else { arr.push( $('.ans').eq(i).val() ); }
+        }
+        db.collection('players').doc(playerID).update({
+            "word01" : arr[0],
+            "word02" : arr[1],
+            "word03" : arr[2],
+            "word04" : arr[3],
+            "word05" : arr[4],
+            "word06" : arr[5],
+            "word07" : arr[6],
+            "word08" : arr[7],
+            "word09" : arr[8],
+            "word10" : arr[9],
+            "word11" : arr[10],
+            "word12" : arr[11],
+            "player" : playerName,
+            "status" : "done"
+        });
+        db.collection('game').doc(gameID).update({ started : false });
     }
     if (stopLoop) clearInterval(timeLoop);
 }, 50 );
