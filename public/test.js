@@ -93,7 +93,7 @@ const card              = document.getElementsByClassName('card');
 //    MM    MM    MM    MM      MM      MM    MM    MM  MM        MM    MM          MM        
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
-showWall(wall1);
+showWall(wall2);
 useThisUnit('vh');
 resize();
 

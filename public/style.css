@@ -68,12 +68,12 @@ input::placeholder {
 
 
 
-/*  MM      MM    MMMM    MM      MM       */
-/*  MM      MM  MM    MM  MM      MM       */
-/*  MM      MM  MMMMMMMM  MM      MM       */
-/*  MM  MM  MM  MM    MM  MM      MM       */
-/*  MM  MM  MM  MM    MM  MM      MM       */
-/*    MM  MM    MM    MM  MMMMMM  MMMMMM   */
+/*  MM      MM    MMMM    MM      MM        MMMM     */
+/*  MM      MM  MM    MM  MM      MM      MM    MM   */
+/*  MM      MM  MMMMMMMM  MM      MM        MM       */
+/*  MM  MM  MM  MM    MM  MM      MM          MM     */
+/*  MM  MM  MM  MM    MM  MM      MM      MM    MM   */
+/*    MM  MM    MM    MM  MMMMMM  MMMMMM    MMMM     */
 
 #wall-1 { background-image : var(--blueGradient); }
 
@@ -198,6 +198,8 @@ input::placeholder {
 
 
 
+
+
 /*  MM      MM    MMMM    MMMMMM    MMMMMM    MM      MMMMMM    MMMM    MMMMMM   */
 /*  MM      MM  MM    MM  MM    MM  MM    MM  MM        MM    MM    MM    MM     */
 /*  MM      MM  MM    MM  MMMMMM    MM    MM  MM        MM      MM        MM     */
@@ -298,6 +300,43 @@ input::placeholder {
     display: grid;
     grid-template-columns: auto auto auto;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*  MM    MM    MMMM    MM      MM  MMMMMMMM        MMMMMM      MMMM    MM      MM   */
+/*  MMMM  MM  MM    MM  MMMM  MMMM  MM              MM    MM  MM    MM    MM  MM     */
+/*  MM  MMMM  MMMMMMMM  MM  MM  MM  MMMMMMMM        MMMMMM    MM    MM      MM       */
+/*  MM    MM  MM    MM  MM      MM  MM        aaaa  MM    MM  MM    MM    MM  MM     */
+/*  MM    MM  MM    MM  MM      MM  MM              MM    MM  MM    MM  MM      MM   */
+/*  MM    MM  MM    MM  MM      MM  MMMMMMMM        MMMMMM      MMMM    MM      MM   */
+
+#name-box {
+    /* something */
+}
+
+#name-label {
+    font-size: 8vw;
+}
+
+#name {
+    font-size: 8vw;
+    width: 54vw;
+    /* text-align: center; */
+}
+
+#name::placeholder {
+    color: #0002;
+}
+
 
 
 
