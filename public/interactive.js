@@ -148,12 +148,16 @@ db.collection('wordlist').onSnapshot( snap => {
         $(titleConfig).html(letterList.index);
         setFont(font[letterList.index]);
         db.collection('dice').doc(diceID).update({ letter : '?' });
+
         wordlistHeader.innerText = `Word List #${num}`;
+        categoryHeader.innerText = `Word List #${num}`;
+
         let set = `${letterList.index}${num}`;
         db.collection('wordlist').where( 'set', '==', set).get().then( snap => {
             snap.docs.forEach( (doc, i) => { 
                 $('.ans').eq(i).attr("placeholder", `${doc.data().phrase}`); 
                 $('.ans').eq(i).val(''); 
+                $('.category').eq(i).html(`${doc.data().phrase}`);
                 categories.push(doc.data().phrase);
                 // listen.tick(i);
             });
@@ -202,6 +206,7 @@ db.collection('players').onSnapshot( snap => {
     if (allDone == 0) {
         playerRoster = [];
         snap.docs.forEach( doc => {
+
             playerRoster.push( doc.data().player);
             let arr = [];
             arr.push(doc.data().word01);
@@ -218,6 +223,7 @@ db.collection('players').onSnapshot( snap => {
             arr.push(doc.data().word12);
             
             resultMap[doc.data().player] = arr;
+
         });
     } 
 });
@@ -286,6 +292,16 @@ wordlistHeader.onclick = () => {
 
 }
 
+results.onclick = () => {
+    // if (!isAuthorized) return;
+    console.log('clidk');
+    showWall(wall3);
+}
+
+dataBox.onclick = () => {
+    showWall(wall1);
+}
+
 
 
 $('.card').on('click', ev => {
@@ -298,6 +314,7 @@ $('.card').on('click', ev => {
     });
     showWall(wall1);
 });
+
 
 
 

@@ -67,7 +67,7 @@ const categoryHeader    = document.getElementById('category-header');
 const category          = document.getElementsByClassName('category');
 
 const playerdata        = document.getElementsByClassName('playerdata');
-const playerLabel        = document.getElementsByClassName('player-label');
+const playerLabel       = document.getElementsByClassName('player-label');
 const playerAns         = document.getElementsByClassName('player-ans');
 
 const wall4             = document.getElementById('wall-4');
@@ -215,4 +215,33 @@ function blinkOnce(text) {
     });
 }
 
+function addPlayerData(name, arr) {
+    if (!name) return;
+    if (!arr) return;
 
+    let column = document.createElement('div');
+        column.classList.add('playerdata');
+        column.classList.add('column');
+
+        let nameElem = document.createElement('div');
+            nameElem.classList.add('player-label');
+            nameElem.innerText = name;
+        $(column).append(nameElem);
+
+        for ( i=0 ; i<12 ; i++ ) {
+            let item = document.createElement('div');
+                item.classList.add('player-ans');
+                item.innerText = arr[i];
+            $(column).append(item);
+        }
+
+    $(dataRowFrame).append(column);
+
+}
+
+function removePlayerData() {
+    let len = playerdata.length;
+    for ( i=0 ; i<len ; i++ ) {
+        playerdata[0].remove();
+    }
+}
