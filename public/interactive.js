@@ -128,7 +128,6 @@ db.collection('game').limit(1).get()
 db.collection('dice').onSnapshot( snap => { 
     $(dice).html(snap.docs[0].data().letter); 
     blinkOnce('dice');
-    // addFlashLayer(dice, greenish);
     // listen.tick(12);
 });
 
@@ -136,13 +135,92 @@ db.collection('timer').onSnapshot( snap => {
     endTime = snap.docs[0].data().endTime;
     $(timer).text(secondsToStr(timeLimit));
     blinkOnce('timer');
-    // addFlashLayer(timerBox, greenish);
     // listen.tick(13);
+});
+
+db.collection('wordlist').onSnapshot( snap => { 
+    db.collection('wordlist').where('set', '==', 'index').limit(1).get()
+    .then( snap => { 
+        categories = [];
+        let num = snap.docs[0].data().number;
+        let lang = snap.docs[0].data().language;
+        letterList.index = lang;
+        $(titleConfig).html(letterList.index);
+        setFont(font[letterList.index]);
+        db.collection('dice').doc(diceID).update({ letter : '?' });
+        wordlistHeader.innerText = `Word List #${num}`;
+        let set = `${letterList.index}${num}`;
+        db.collection('wordlist').where( 'set', '==', set).get().then( snap => {
+            snap.docs.forEach( (doc, i) => { 
+                $('.ans').eq(i).attr("placeholder", `${doc.data().phrase}`); 
+                $('.ans').eq(i).val(''); 
+                categories.push(doc.data().phrase);
+                // listen.tick(i);
+            });
+        });
+
+    });
+});
+
+db.collection('game').onSnapshot( snap => {
+    if (playerName == '') return;
+    if (snap.docs[0].data().started) {
+
+        console.log('detected that game started');
+        console.log(playerName, ' is in the game.');
+
+        db.collection('players').add({
+            player : playerName,
+            status : "ready"
+        })
+        .then( () => {
+            console.log('document was added');
+            db.collection('players').where('player', '==', playerName).get()
+            .then( res => {
+                playerID = res.docs[0].id;
+                console.log(playerID);
+            })
+        });
+    }
 });
 
 
 
 
+db.collection('players').onSnapshot( snap => {
+    if (playerName == '') return;
+    
+    let allDone = 4;
+
+    snap.docs.forEach( doc => {
+        if (doc.data().status == 'done') { allDone *= 2; } 
+        else { allDone *= 0; }
+    });
+
+    console.log('all done? ', allDone);
+
+    if (allDone == 0) {
+        playerRoster = [];
+        snap.docs.forEach( doc => {
+            playerRoster.push( doc.data().player);
+            let arr = [];
+            arr.push(doc.data().word01);
+            arr.push(doc.data().word02);
+            arr.push(doc.data().word03);
+            arr.push(doc.data().word04);
+            arr.push(doc.data().word05);
+            arr.push(doc.data().word06);
+            arr.push(doc.data().word07);
+            arr.push(doc.data().word08);
+            arr.push(doc.data().word09);
+            arr.push(doc.data().word10);
+            arr.push(doc.data().word11);
+            arr.push(doc.data().word12);
+            
+            resultMap[doc.data().player] = arr;
+        });
+    } 
+});
 
 
 
@@ -190,7 +268,8 @@ titleConfig.onclick = () => {
     // ev.stopPropagation();
     if (!isAuthorized) return;
     if (isClockTicking) return;
-    addFlashLayer(titleConfig, greenish);
+
+
     soundButtonClick.play();
     letterList.index = { EN : 'KR', KR : 'EN' }[letterList.index];
     db.collection('wordlist').doc(wordlistID).update({

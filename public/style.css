@@ -203,8 +203,8 @@ input::placeholder {
     position : absolute;
     top : 0px;
     right : 0px;
-    /* background-color : var(--whiteShade); */
-    background: red;
+    background-color : var(--whiteShade);
+    /* background: red; */
     text-align : center;
     color : var(--blackShade);
 }
@@ -223,6 +223,7 @@ input::placeholder {
     grid-row : 2/3;
     grid-column : 2/3;
     position: relative;
+    z-index: 2;
 }
 
 
@@ -248,6 +249,7 @@ input::placeholder {
     grid-row : 3/4;
     grid-column : 2/3;
     position: relative;
+    z-index: 3;
 }
 
 
@@ -269,6 +271,7 @@ input::placeholder {
     grid-row : 4/5;
     grid-column : 2/3;
     position: relative;
+    z-index: 4;
 }
 
 
@@ -289,6 +292,7 @@ input::placeholder {
     flex-flow: column;
     justify-content : flex-start;
     align-items : flex-start;
+    z-index: 1;
     /* position: relative; */
 }
 
@@ -715,7 +719,7 @@ input::placeholder {
 
 .ans.mid {
     font-size: 2.5vw;
-    border-radius: 0.5vw;
+    border-radius: 1vw;
     width: 27vw;
     margin: 0.5vw;
 }

@@ -206,7 +206,6 @@ function useThisUnit(text) {
     removeClassAddClass(wordlistHeader);
 }
 
-
 function blinkOnce(text) {
     // valid inputs are...
     // 'dice', 'timer', 'results'
