@@ -79,7 +79,7 @@ input::placeholder {
 
 #wall-2 { background-image : var(--redGradient); }
 
-#wall-3 { background-image : var(--grayGradient); }
+#wall-3 { background-image : var(--blueGradient); }
 
 #wall-4 { background-image : var(--greenGradient); }
 
@@ -226,14 +226,10 @@ input::placeholder {
     text-decoration : underline;
 }
 
-
-
 #wordlist-frame {
     display: flex;
     flex-flow: column;
 }
-
-
 
 .ans {
     background: #fff6;
@@ -255,16 +251,21 @@ input::placeholder {
 
 #data-box {
     position: relative;
-    width: 80%;
-    height: 80%;
+    width: 94%;
+    height: 94%;
+    border-radius: 4vh;
+    display : flex;
+    flex-flow : column;
+    justify-content: center;
+    align-items: center;
 }
 
 #data-row-scroll {
     position: absolute;
-    padding:1vh;
     width: 90%;
     height: 90%;
-    background: #0001;
+    border: 1px gray solid;
+    background-image: var(--grayGradient);
     overflow-x: scroll;
     overflow-y: hidden;
 }
@@ -273,11 +274,37 @@ input::placeholder {
     display: flex;
     flex-flow: row;
     width: 700px;
-    background: white;
+}
+
+.column {
+    background: var(--yellowGradient);
+    height: 70vh;
+    border-radius: 2.5vh;
+    margin: 3vh 0vh 3vh 3vh;
+    padding: 3vh;
+    font-size: 3vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+
+#category-header {
+    text-decoration: underline;
+    text-align: center;
 }
 
 
 
+
+
+.playerdata {
+    text-align: center;
+}
+
+.player-name {
+    text-decoration: underline;
+}
 
 
 
@@ -423,6 +450,7 @@ input::placeholder {
 .Qnum.vh {
     font-size: 6vh;
 }
+
 .ans.vh {
     font-size: 6vh;
     border-radius: 0.5vh;
@@ -619,6 +647,24 @@ input::placeholder {
 
 
 
+
+
+/*  MMMMMM  MMMMMMMM  MM      MM  MMMMMM      MMMM    MMMMMM      MMMM    MMMMMM    MM      MM   */
+/*    MM    MM        MMMM  MMMM  MM    MM  MM    MM  MM    MM  MM    MM  MM    MM    MM  MM     */
+/*    MM    MMMMMMMM  MM  MM  MM  MM    MM  MM    MM  MMMMMM    MMMMMMMM  MMMMMM        MM       */
+/*    MM    MM        MM      MM  MMMMMM    MM    MM  MM    MM  MM    MM  MM    MM      MM       */
+/*    MM    MM        MM      MM  MM        MM    MM  MM    MM  MM    MM  MM    MM      MM       */
+/*    MM    MMMMMMMM  MM      MM  MM          MMMM    MM    MM  MM    MM  MM    MM      MM       */
+
+
+
+
+
+
+
+
+
+
 /*  MMMMMM    MM      MM          MMMM    MM        MMMM      MMMM      MMMM     */
 /*  MM    MM    MM  MM          MM    MM  MM      MM    MM  MM    MM  MM    MM   */
 /*  MMMMMM        MM            MM        MM      MMMMMMMM    MM        MM       */
@@ -651,9 +697,6 @@ input::placeholder {
     align-items : center;
 }
 
-
-
-
 .box {
     cursor : pointer;
     background : var(--yellowGradient);
@@ -665,13 +708,12 @@ input::placeholder {
     align-items: center;
 }
 
-
-.column {
+/* .column {
     background: pink;
     width:32vh;
     border-radius: 1vh;
     margin:1vh;
-}
+} */
 
 .card {
     font-size: 2em;

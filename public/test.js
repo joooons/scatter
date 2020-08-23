@@ -93,7 +93,7 @@ const card              = document.getElementsByClassName('card');
 //    MM    MM    MM    MM      MM      MM    MM    MM  MM        MM    MM          MM        
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
-showWall(wall2);
+showWall(wall3);
 useThisUnit('vh');
 resize();
 
@@ -126,17 +126,17 @@ window.onresize = () => { resize(); }
 
 document.addEventListener('keydown', ev => {
     if (ev.keyCode == 38) {
-        console.log('up');
+        // console.log('up');
         makeWordlistStraight();
         useThisUnit('vw');
     }
     if (ev.keyCode == 37) {
-        console.log('left');
+        // console.log('left');
         makeWordlistFlat();
         useThisUnit('vh');
     }
     if (ev.keyCode == 40) {
-        console.log('down');
+        // console.log('down');
         makeWordlistFlat();
         useThisUnit('mid');
     }
@@ -191,20 +191,18 @@ function resize() {
     let ratio = Number.parseFloat(window.innerHeight / window.innerWidth).toPrecision(3);
     
     if ( ratio < 0.5 ) {
-        // console.log('left');
         makeWordlistFlat();
         useThisUnit('vh');
-        console.log(ratio, 'vh');
+        // console.log(ratio, 'vh');
     } else if ( ratio > 1.34 ) {
-        // console.log('up');
         makeWordlistStraight();
         useThisUnit('vw');
-        console.log(ratio, 'vw');
+        // console.log(ratio, 'vw');
     } else {
         // console.log('down');
         makeWordlistFlat();
         useThisUnit('mid');
-        console.log(ratio, 'mid');
+        // console.log(ratio, 'mid');
     }
 }
 
@@ -239,6 +237,7 @@ function useThisUnit(text) {
     removeAdd(results);
     removeAdd(wordlistBox);
     removeAdd(wordlistHeader);
+    
 
 }
 
