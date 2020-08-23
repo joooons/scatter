@@ -1,5 +1,5 @@
 
-console.log('test.js at your service!');
+console.log('visualize.js at your service!');
 
 
 
@@ -67,7 +67,7 @@ const categoryHeader    = document.getElementById('category-header');
 const category          = document.getElementsByClassName('category');
 
 const playerdata        = document.getElementsByClassName('playerdata');
-const playerName        = document.getElementsByClassName('player-name');
+const playerLabel        = document.getElementsByClassName('player-label');
 const playerAns         = document.getElementsByClassName('player-ans');
 
 const wall4             = document.getElementById('wall-4');
@@ -93,15 +93,9 @@ const card              = document.getElementsByClassName('card');
 //    MM    MM    MM    MM      MM      MM    MM    MM  MM        MM    MM          MM        
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
-showWall(wall1);
+showWall(wall2);
 useThisUnit('vh');
 resize();
-
-
-
-
-
-
 
 
 
@@ -159,75 +153,59 @@ function setFont(font) {
     dice.style.fontFamily = font;
 }
 
-
-
-
-
-
-
 function resize() {
     let ratio = Number.parseFloat(window.innerHeight / window.innerWidth).toPrecision(3);
-    
     if ( ratio < 0.5 ) {
         makeWordlistFlat();
         useThisUnit('vh');
-        // console.log(ratio, 'vh');
     } else if ( ratio > 1.34 ) {
         makeWordlistStraight();
         useThisUnit('vw');
-        // console.log(ratio, 'vw');
     } else {
-        // console.log('down');
         makeWordlistFlat();
         useThisUnit('mid');
-        // console.log(ratio, 'mid');
     }
+
+    function makeWordlistFlat() {
+        wordlistFrame.style.flexFlow = 'row';
+        wordlistBottom.style.marginLeft = '2vh';
+    }
+    
+    function makeWordlistStraight() {
+        wordlistFrame.style.flexFlow = 'column';
+        wordlistBottom.style.marginLeft = '0vw';
+    }
+
 }
-
-
-
 
 function useThisUnit(text) {
     let arr = ['vh','vw','mid'];
     if (!arr.includes(text)) return;
 
-    function removeAdd(elem) {
-        arr.forEach( unit => {
-            elem.classList.remove(unit);
-        });;
+    function removeClassAddClass(elem) {
+        arr.forEach( unit => { elem.classList.remove(unit); });;
         elem.classList.add(text);
     }
 
     for ( i=0 ; i<12 ; i++ ) { 
-        removeAdd(ans[i]);
-        removeAdd(Qnum[i]);
+        removeClassAddClass(ans[i]);
+        removeClassAddClass(Qnum[i]);
     }
 
-    removeAdd(container);
-    removeAdd(titleBox);
-    removeAdd(title);
-    removeAdd(titleConfig);
-    removeAdd(diceBox);
-    removeAdd(dice);
-    removeAdd(timerBox);
-    removeAdd(timer);
-    removeAdd(resultsBox);
-    removeAdd(results);
-    removeAdd(wordlistBox);
-    removeAdd(wordlistHeader);
-    
-
+    removeClassAddClass(container);
+    removeClassAddClass(titleBox);
+    removeClassAddClass(title);
+    removeClassAddClass(titleConfig);
+    removeClassAddClass(diceBox);
+    removeClassAddClass(dice);
+    removeClassAddClass(timerBox);
+    removeClassAddClass(timer);
+    removeClassAddClass(resultsBox);
+    removeClassAddClass(results);
+    removeClassAddClass(wordlistBox);
+    removeClassAddClass(wordlistHeader);
 }
 
 
 
 
-function makeWordlistFlat() {
-    wordlistFrame.style.flexFlow = 'row';
-    wordlistBottom.style.marginLeft = '2vh';
-}
-
-function makeWordlistStraight() {
-    wordlistFrame.style.flexFlow = 'column';
-    wordlistBottom.style.marginLeft = '0vw';
-}

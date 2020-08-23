@@ -118,7 +118,9 @@ var letterList = {
     index : 'EN',
     EN : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     KR : 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ'  }
-var playerName = '';
+
+// var playerName = '';
+
 var categories = [];
 var playerRoster = [];
 var resultMap = new Map();
@@ -157,195 +159,6 @@ const results       = document.getElementById('results');
 
 
 
-
-
-
-//    MMMM      MMMM      MMMM            MMMM      MMMM    MM    MM    MMMM    MMMMMM    MMMM    MM    MM  MMMMMM    MMMM    
-//  MM    MM  MM    MM  MM    MM        MM    MM  MM    MM  MMMM  MM  MM    MM    MM    MM    MM  MMMM  MM    MM    MM    MM  
-//  MM          MM        MM            MM        MM    MM  MM  MMMM    MM        MM    MMMMMMMM  MM  MMMM    MM      MM      
-//  MM            MM        MM          MM        MM    MM  MM    MM      MM      MM    MM    MM  MM    MM    MM        MM    
-//  MM    MM  MM    MM  MM    MM        MM    MM  MM    MM  MM    MM  MM    MM    MM    MM    MM  MM    MM    MM    MM    MM  
-//    MMMM      MMMM      MMMM            MMMM      MMMM    MM    MM    MMMM      MM    MM    MM  MM    MM    MM      MMMM    
-
-// CSS constants ___________________________________________________________
-
-// const style = {
-//     body : {
-//         // "background\-image" : colorSet.blueGradient,
-//         },
-//     wall : {
-//         "user\-select" : "none",
-//         "position" : "absolute",
-//         "top" : "0px",
-//         "bottom" : "0px",
-//         "left" : "0px",
-//         "right" : "0px",
-//         // "background\-image" : colorSet.blueGradient,
-//         "display" : "flex",
-//         "justify\-content" : "center",
-//         "align\-items" : "center",
-//         "font\-family" : font.EN },
-//     container : {
-//         "padding" : "2vh",
-//         "border\-radius" : "4vh",
-//         // "border\-radius" : `4vh`,
-//         "background\-color" : colorSet.whiteShade,
-//         "display" : "grid",
-//         "grid\-template\-columns" : "auto auto",
-//         "grid\-template\-rows" : "auto auto auto auto auto" },
-//     box : {
-//         "cursor" : "pointer",
-//         "position" : "relative",
-//         "margin" : "1vh",
-//         "padding" : "1vh",
-//         "border\-radius" : "2vh",
-//         "box\-shadow" : "1vh 1vh 3vh rgba(0,0,0,0.5)",
-//         "background" : colorSet.yellowGradient,
-//         "overflow\-x" : "hidden",
-//         "overflow\-y" : "hidden",
-//         "display" : "flex",
-//         "flex\-flow" : "column" },
-//     title : {
-//         "padding" : "2vh 5vh 2vh 5vh",
-//         "grid\-row" : "1/2",
-//         "grid\-column" : "1/3",
-//         "justify\-content" : "center",
-//         "align\-items" : "center",
-//         "font\-size" : "12vh",
-//         "font\-family" : font.EN },
-//     corner : {
-//         "position" : "absolute",
-//         "top" : "0px",
-//         "right" : "0px",
-//         "width" : "8vh",
-//         "height" : "7vh",
-//         "border\-radius" : "0vh 0vh 0vh 2vh",
-//         "background\-color" : colorSet.whiteShade,
-//         "text\-align" : "center",
-//         "font\-size" : "5.5vh",
-//         "color" : colorSet.blackShade },
-//     dice : {
-//         "grid\-row" : "2/3",
-//         "grid\-column" : "2/3",
-//         "justify\-content" : "center",
-//         "align\-items" : "center",
-//         "font\-size" : "12vh",
-//         "font\-family" : font.EN },
-//     timer : {
-//         "grid\-row" : "3/4",
-//         "grid\-column" : "2/3",
-//         "justify\-content" : "center",
-//         "align\-items" : "flex-start",
-//         "font\-size" : "8vh",
-//         "font\-family" : font.EN },
-//     results : {
-//         "grid\-row" : "4/5",
-//         "grid\-column" : "2/3",
-//         "justify\-content" : "center",
-//         "text\-align" : "center",
-//         "align\-items" : "flex-start",
-//         "font\-size" : "6vh",
-//         "font\-family" : font.EN },
-//     wordlist : {
-//         "grid\-row" : "2/6",
-//         "grid\-column" : "1/2",
-//         "justify\-content" : "flex-start",
-//         "align\-items" : "flex-start",
-//         "font\-family" : font.EN },
-//     wordfirst : {
-//         "margin" : "2vh",
-//         "width" : "100%",
-//         "text\-align" : "center",
-//         "font\-size" : "6vh",
-//         "text\-decoration" : "underline" },
-//     wordframe : {
-//         "margin" : "2vh",
-//         "display" : "flex",
-//         "flex\-flow" : "row",
-//         "font\-size" : "6vh" },
-//     wordpack : {
-//         "margin" : "0vh 3vh 0vh 3vh" },
-//     span : {
-//         // "margin" : "0vh",
-//         "margin\-bottom" : "2vh",
-//         // "padding\-left" : "1em",
-//         "text\-indent" : "-1em"
-//         // "background" : "green"
-//         },
-//     input : {
-//         // "margin" : "0vh",
-//         "background" : "transparent",
-//         "font\-family" : font.EN,
-//         "font\-size" : "4vh",
-//         "color" : colorSet.blueGradient,
-//         "border" : "none"
-//         },
-//     popup : {
-//         "position" : "absolute",
-//         "left" : "0px",
-//         "right" : "0px",
-//         "top" : "0px",
-//         "bottom" : "0px",
-//         "padding" : "7vh",
-//         "display" : "flex",
-//         "flexFlow" : "row wrap",
-//         "justifyContent" : "center",
-//         "alignContent" : "center",
-//         "background" : colorSet.blackShade },
-//     nameprompt : {
-//         "position" : "absolute",
-//         "left" : "0px",
-//         "right" : "0px",
-//         "top" : "0px",
-//         "bottom" : "0px",
-//         "padding" : "0 20vw 0 20vw",
-//         "display" : "flex",
-//         "flexFlow" : "row",
-//         "justifyContent" : "center",
-//         "alignContent" : "center",
-//         "alignItems" : "center",
-//         "background" : colorSet.blackerShade },
-//     wordcard : {
-//         "background" : colorSet.yellowGradient,
-//         "width" : "10vh",
-//         "height" : "15vh",
-//         "margin" : "1vh",
-//         "padding" : "1vh",
-//         "display" : "block",
-//         "borderRadius" : "1vh",
-//         "boxShadow" : "2px 4px 2px rgba(0,0,0,0.5)",
-//         "display" : "flex",
-//         "justifyContent" : "center",
-//         "fontSize" : "1em",
-//         "cursor" : "pointer" },
-//     cover : {
-//         "position" : "absolute",
-//         "left" : "0px",
-//         "right" : "0px",
-//         "top" : "0px",
-//         "bottom" : "0px",
-//         "padding" : "7vh",
-//         "display" : "flex",
-//         "flexFlow" : "row wrap",
-//         "justifyContent" : "center",
-//         "alignContent" : "center"
-//         // "background" : colorSet.blueGradient 
-//         },
-//     table : {
-//         "position" : "fixed",
-//         "left" : "0px",
-//         "right" : "0px",
-//         "top" : "0px",
-//         "bottom" : "0px",
-//         "padding" : "10vh",
-//         "display" : "grid",
-//         "grid\-template\-columns" : "auto auto auto auto",
-//         // "flexFlow" : "column",
-//         // "justifyContent" : "center",
-//         // "alignContent" : "center",
-//         "background" : "rgba(255, 255, 255, 1.0)" }
-
-//     }   // END of const style = {...}
 
 
 
@@ -656,7 +469,7 @@ $(timer).on('click', function() {
 //  MM    MM  MM    MM  MM      MM        MM    MM  MM    MM  MM        MM    MM    MM      MM    MM    MM  MM    MM  
 //  MMMMMM      MMMM    MM      MM          MMMM    MM    MM  MMMMMMMM  MM    MM    MM    MMMMMM    MMMM    MM    MM  
 
-// DOM ELEMENT CREATION ________________________________________________
+
 function addCover(elem) {
     let newElem = document.createElement('div');
         newElem.id = 'cover';
