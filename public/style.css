@@ -11,7 +11,7 @@
 
 :root {
     --redish : #F35;
-    --greenish : #4FA;
+    --greenish : #4FA; 
     --whiteShade : rgba(255,255,255,0.3);
     --blackShade : rgb(0, 0, 0, 0.5);
     --blackerShade : rgb(0, 0, 0, 0.7);
@@ -23,6 +23,66 @@
 
     --fontEN :  'Boogaloo', cursive;
     --fontKR :  'Jua', sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+/*  MMMMMM    MM      MM          MMMM    MM        MMMM      MMMM      MMMM     */
+/*  MM    MM    MM  MM          MM    MM  MM      MM    MM  MM    MM  MM    MM   */
+/*  MMMMMM        MM            MM        MM      MMMMMMMM    MM        MM       */
+/*  MM    MM      MM            MM        MM      MM    MM      MM        MM     */
+/*  MM    MM      MM            MM    MM  MM      MM    MM  MM    MM  MM    MM   */
+/*  MMMMMM        MM              MMMM    MMMMMM  MM    MM    MMMM      MMMM     */
+
+
+.wall-block {
+    /* Covers the whole screen. */
+    /* Can disappear. */
+    /* Invisible by default. */
+    position : fixed;
+    top : 0px;
+    bottom : -50px;
+    left : 0px;
+    right : 0px;
+    display: none;
+}
+
+.wall-flex {
+    /* The invisible frame that centers a box perfectly. */
+    position: fixed;
+    top : 0px;
+    bottom : 0px;
+    left : 0px;
+    right : 0px;
+    display: flex;
+    justify-content : center;
+    align-items : center;
+}
+
+.box {
+    cursor : pointer;
+    background : var(--yellowGradient);
+    overflow-x : hidden;
+    overflow-y : hidden;
+    display : flex;
+    flex-flow : column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flash {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #f35a;
+    display: none;
 }
 
 
@@ -68,6 +128,9 @@ input::placeholder {
 
 
 
+
+
+
 /*  MM      MM    MMMM    MM      MM        MMMM     */
 /*  MM      MM  MM    MM  MM      MM      MM    MM   */
 /*  MM      MM  MMMMMMMM  MM      MM        MM       */
@@ -82,6 +145,11 @@ input::placeholder {
 #wall-3 { background-image : var(--blueGradient); }
 
 #wall-4 { background-image : var(--greenGradient); }
+
+
+
+
+
 
 
 
@@ -126,7 +194,9 @@ input::placeholder {
     grid-column : 1/3;
 }
 
-
+#title-box.admin {
+    background-image: var(--greenGradient);
+}
 
 
 #title-config {
@@ -152,6 +222,7 @@ input::placeholder {
 #dice-box {
     grid-row : 2/3;
     grid-column : 2/3;
+    position: relative;
 }
 
 
@@ -176,7 +247,10 @@ input::placeholder {
 #timer-box {
     grid-row : 3/4;
     grid-column : 2/3;
+    position: relative;
 }
+
+
 
 
 
@@ -194,6 +268,7 @@ input::placeholder {
 #results-box {
     grid-row : 4/5;
     grid-column : 2/3;
+    position: relative;
 }
 
 
@@ -214,6 +289,7 @@ input::placeholder {
     flex-flow: column;
     justify-content : flex-start;
     align-items : flex-start;
+    /* position: relative; */
 }
 
 
@@ -360,13 +436,13 @@ input::placeholder {
     font-size: 8vw;
 }
 
-#name {
+#name-text {
     font-size: 8vw;
     width: 54vw;
-    /* text-align: center; */
+    
 }
 
-#name::placeholder {
+#name-text::placeholder {
     color: #0002;
 }
 
@@ -668,58 +744,6 @@ input::placeholder {
 
 
 
-
-
-
-/*  MMMMMM    MM      MM          MMMM    MM        MMMM      MMMM      MMMM     */
-/*  MM    MM    MM  MM          MM    MM  MM      MM    MM  MM    MM  MM    MM   */
-/*  MMMMMM        MM            MM        MM      MMMMMMMM    MM        MM       */
-/*  MM    MM      MM            MM        MM      MM    MM      MM        MM     */
-/*  MM    MM      MM            MM    MM  MM      MM    MM  MM    MM  MM    MM   */
-/*  MMMMMM        MM              MMMM    MMMMMM  MM    MM    MMMM      MMMM     */
-
-
-.wall-block {
-    /* Covers the whole screen. */
-    /* Can disappear. */
-    /* Invisible by default. */
-    position : fixed;
-    top : 0px;
-    bottom : -50px;
-    left : 0px;
-    right : 0px;
-    display: none;
-}
-
-.wall-flex {
-    /* The invisible frame that centers a box perfectly. */
-    position: fixed;
-    top : 0px;
-    bottom : 0px;
-    left : 0px;
-    right : 0px;
-    display: flex;
-    justify-content : center;
-    align-items : center;
-}
-
-.box {
-    cursor : pointer;
-    background : var(--yellowGradient);
-    overflow-x : hidden;
-    overflow-y : hidden;
-    display : flex;
-    flex-flow : column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* .column {
-    background: pink;
-    width:32vh;
-    border-radius: 1vh;
-    margin:1vh;
-} */
 
 
 

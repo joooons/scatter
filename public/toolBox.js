@@ -76,27 +76,27 @@ function secondsToStr( sec ) {
 
 // _______________________ EFFECTS _________________________________
 
-function addFlashLayer( elem, color = 'red') {
-    let position = $(elem).css('position');
-    let overflow = $(elem).css('overflow');    
-    $(elem).css('position', 'relative');
-    $(elem).css('overflow', 'hidden');
-    let newElem = document.createElement('div');
-        newElem.style.position = 'absolute';
-        newElem.style.background = color;
-        newElem.style.left = '0%';
-        newElem.style.top = '0%';
-        newElem.style.width = '100%';
-        newElem.style.height = '100%';
-        newElem.style.opacity = 0.8;
-        $(newElem).animate({opacity: 0}, 400 );
-    $(elem).append(newElem);
-    setTimeout( () => {
-        newElem.remove();
-    }, 1000);
-    $(elem).css('position', position);
-    $(elem).css('overflow', overflow);
-}
+// function addFlashLayer( elem, color = 'red') {
+//     let position = $(elem).css('position');
+//     let overflow = $(elem).css('overflow');    
+//     $(elem).css('position', 'relative');
+//     $(elem).css('overflow', 'hidden');
+//     let newElem = document.createElement('div');
+//         newElem.style.position = 'absolute';
+//         newElem.style.background = color;
+//         newElem.style.left = '0%';
+//         newElem.style.top = '0%';
+//         newElem.style.width = '100%';
+//         newElem.style.height = '100%';
+//         newElem.style.opacity = 0.8;
+//         $(newElem).animate({opacity: 0}, 400 );
+//     $(elem).append(newElem);
+//     setTimeout( () => {
+//         newElem.remove();
+//     }, 1000);
+//     $(elem).css('position', position);
+//     $(elem).css('overflow', overflow);
+// }
 
 
 

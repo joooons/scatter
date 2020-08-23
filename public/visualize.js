@@ -56,7 +56,7 @@ const results           = document.getElementById('results');
 const wall2             = document.getElementById('wall-2');
 const nameBox           = document.getElementById('name-box');
 const nameLabel         = document.getElementById('name-label');
-const name              = document.getElementById('name');
+const nameText          = document.getElementById('name-text');
 
 const wall3             = document.getElementById('wall-3');
 const dataBox           = document.getElementById('data-box');
@@ -93,7 +93,7 @@ const card              = document.getElementsByClassName('card');
 //    MM    MM    MM    MM      MM      MM    MM    MM  MM        MM    MM          MM        
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
-showWall(wall2);
+showWall(wall1);
 useThisUnit('vh');
 resize();
 
@@ -207,5 +207,13 @@ function useThisUnit(text) {
 }
 
 
+function blinkOnce(text) {
+    // valid inputs are...
+    // 'dice', 'timer', 'results'
+    let elem = document.querySelector(`#${text} + .flash`);
+    $(elem).fadeIn(0, () => {
+        $(elem).fadeOut(400);
+    });
+}
 
 

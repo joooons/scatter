@@ -79,12 +79,15 @@
         </div>
         <div id='dice-box' class="box">
           <div id='dice'>W</div>
+          <div class="flash"></div>
         </div>
         <div id="timer-box" class="box">
           <div id='timer'>TIMER</div>
+          <div class="flash"></div>
         </div>
         <div id="results-box" class="box">
           <div id="results">RESULTS</div>
+          <div class="flash"></div>
         </div>
       </div>
     </div>
@@ -109,7 +112,7 @@
     <div class="wall-flex">
       <div id="name-box">
         <div id="name-label">What's your name?</div>
-        <input type="text" id="name" placeholder="jorje washington">
+        <input type="text" id="name-text" placeholder="jorje washington" autocomplete="off" >
       </div>
     </div>
   </div>
@@ -217,7 +220,7 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
   </script>
-  <!-- <script src='toolBox.js'></script> -->
+  <script src='toolBox.js'></script>
   <!-- <script src='app.js'></script> -->
   <script src='visualize.js'></script>
   <script src="interactive.js"></script>
