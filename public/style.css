@@ -320,14 +320,20 @@ input::placeholder {
 
 #card-box {
     background: #0002;
-    width: 90%;
-    height: 90%;
     padding: 5vh;
     border-radius: 5vh;
     display: grid;
     grid-template-columns: auto auto auto;
+    gap: 2vh;
 }
 
+.card {
+    font-size: 2em;
+    border-radius: 2vh;
+    width: 24vw;
+    height: 24vh;
+    font-size: 6vw;
+}
 
 
 
@@ -715,9 +721,6 @@ input::placeholder {
     margin:1vh;
 } */
 
-.card {
-    font-size: 2em;
-}
 
 
 
