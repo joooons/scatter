@@ -93,7 +93,7 @@ const card              = document.getElementsByClassName('card');
 //    MM    MM    MM    MM      MM      MM    MM    MM  MM        MM    MM          MM        
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
-showWall(wall4);
+showWall(wall1);
 useThisUnit('vh');
 resize();
 
@@ -123,27 +123,6 @@ resize();
 //  MMMMMMMM      MM            MMMMMM  MMMMMM    MMMM      MM    MMMMMMMM  MM    MM  MMMMMMMM  MM    MM  
 
 window.onresize = () => { resize(); }
-
-document.addEventListener('keydown', ev => {
-    if (ev.keyCode == 38) {
-        // console.log('up');
-        makeWordlistStraight();
-        useThisUnit('vw');
-    }
-    if (ev.keyCode == 37) {
-        // console.log('left');
-        makeWordlistFlat();
-        useThisUnit('vh');
-    }
-    if (ev.keyCode == 40) {
-        // console.log('down');
-        makeWordlistFlat();
-        useThisUnit('mid');
-    }
-});
-
-
-
 
 
 
@@ -178,7 +157,6 @@ function setFont(font) {
         playerAns[i].style.fontFamily = font;
     }
     dice.style.fontFamily = font;
-    
 }
 
 
