@@ -119,6 +119,10 @@ input::placeholder {
     color: black;
 }
 
+p {
+    margin-bottom: 0px;
+    margin-top: 0.8em;
+}
 
 
 
