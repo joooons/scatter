@@ -215,33 +215,43 @@ function blinkOnce(text) {
     });
 }
 
-function addPlayerData(name, arr) {
+function addPlayerData(name) {
     if (!name) return;
-    if (!arr) return;
-
+    let arr = new Array(12).fill('-');
     let column = document.createElement('div');
         column.classList.add('playerdata');
         column.classList.add('column');
-
         let nameElem = document.createElement('div');
             nameElem.classList.add('player-label');
             nameElem.innerText = name;
         $(column).append(nameElem);
-
         for ( i=0 ; i<12 ; i++ ) {
             let item = document.createElement('div');
                 item.classList.add('player-ans');
                 item.innerText = arr[i];
             $(column).append(item);
         }
-
     $(dataRowFrame).append(column);
-
 }
 
+function enterPlayerData(name, key, value) {
+    // This enters data into the Results data columns...
+    let str = value;
+    if ( str == '' ) str = '-';
+
+    console.log('--inside enterPlayerData() --');
+    console.log(name,key,value);
+
+    let col = -99;
+    let row = parseInt( key.slice(4,6) );
+    let len = $('.player-label').length;
+    for ( i=0 ; i<len ; i++ ) { if ( $('.player-label').eq(i).text() == name ) { col = i; } }
+    if ( col > -1 ) { $('.playerdata').eq(col).children().eq(row).html(str); }
+}
+
+
 function removePlayerData() {
+    // Removes all columns in the Results page EXCEPT the first column.
     let len = playerdata.length;
-    for ( i=0 ; i<len ; i++ ) {
-        playerdata[0].remove();
-    }
+    for ( i=0 ; i<len ; i++ ) { playerdata[0].remove(); }
 }
