@@ -23,7 +23,7 @@ var isAuthorized = false;
 var greenish = "#4FA";
 var redish = "#F35";
 
-var timeLimit = 120;
+var timeLimit = 180;
 var nowTime = nowInSeconds();
 var endTime = 0;
 var stopLoop = false;           // This will never be used.
