@@ -106,7 +106,7 @@ body {
     user-select : none;
     box-sizing: border-box;
     font-family: var(--fontEN);
-    /* don't put background color or image here. it gets weird. */
+    /* don't put background color or image here. it gets weird. Trust me. */
 }
 
 input {
@@ -204,7 +204,6 @@ input::placeholder {
     top : 0px;
     right : 0px;
     background-color : var(--whiteShade);
-    /* background: red; */
     text-align : center;
     color : var(--blackShade);
 }
@@ -293,12 +292,7 @@ input::placeholder {
     justify-content : flex-start;
     align-items : flex-start;
     z-index: 1;
-    /* position: relative; */
 }
-
-
-
-
 
 #wordlist-header {
     width : 100%;
@@ -368,11 +362,9 @@ input::placeholder {
     justify-content: space-between;
 }
 
-
 #category-data {
     white-space: nowrap;
     overflow-x: auto;
-    /* width: 100px; */
 }
 
 #category-header {
@@ -384,13 +376,16 @@ input::placeholder {
     text-align: center;
     white-space: nowrap;
     overflow-x: auto;
-    /* width: 100px; */
-}
 }
 
 .player-label {
     text-decoration: underline;
 }
+
+
+
+
+
 
 
 
@@ -439,7 +434,7 @@ input::placeholder {
 /*  MM    MM  MM    MM  MM      MM  MMMMMMMM        MMMMMM      MMMM    MM      MM   */
 
 #name-box {
-    /* something */
+    background: transparent;
 }
 
 #name-label {
@@ -449,7 +444,6 @@ input::placeholder {
 #name-text {
     font-size: 8vw;
     width: 54vw;
-    
 }
 
 #name-text::placeholder {
@@ -729,14 +723,6 @@ input::placeholder {
     width: 27vw;
     margin: 0.5vw;
 }
-
-
-
-
-
-
-
-
 
 
 

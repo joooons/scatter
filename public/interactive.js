@@ -17,11 +17,7 @@ console.log('interactive.js at your service!');
 var playerName = '';
     // Until you have a playerName, you will not see changes to...
     // ...the 'game' and 'players' collections.
-
 var isAuthorized = false;
-
-var greenish = "#4FA";
-var redish = "#F35";
 
 var timeLimit = 180;
 var nowTime = nowInSeconds();
@@ -29,15 +25,11 @@ var endTime = 0;
 var stopLoop = false;           // This will never be used.
 var isClockTicking = false;
 
-var wordListIndex = 0;
 var letterList = {
     index : 'EN',
     EN : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     KR : 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ'  }
 
-var categories = [];
-var playerRoster = [];
-var resultMap = new Map();    // WHAT IS THIS???
 
 
 
@@ -99,25 +91,30 @@ var playerID = 'none';
 //  MM          MM    MM    MM  MM        MM    MM  MM    MM  MM    MM  MM                MM    MM    MM    MM      MM      MM    MM    MM    MM      MM    MM    MM  MM    MM  
 //  MM        MMMMMM  MM    MM  MMMMMMMM  MMMMMM    MM    MM    MMMM    MMMMMMMM        MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM    MM    MMMMMM    MMMM    MM    MM  
 
-// db.collection('dice').limit(1).get()
-// .then( snap => { diceID = snap.docs[0].id });
-
-// db.collection('timer').limit(1).get()
-// .then( snap => { timerID = snap.docs[0].id });
-
-// db.collection('wordlist').where('set', '==', 'index').limit(1).get()
-// .then( snap => { wordlistID = snap.docs[0].id });
-
-// db.collection('game').limit(1).get()
-// .then( snap => { gameID = snap.docs[0].id });
-
-// COULD THIS SHORTCUT WORK???
-// IT MIGHT... IF I NEVER CHANGE THE DOCUMENT IDs
 diceID = "78URdKxROHcrSEZmQvBs";
+gameID = "Xi3hQ1fLeyTh38N8VEM6";
 timerID = "Nw1BT0CUPUTQJwRpQwN8";
 wordindexID = "vJq15L5GkZv6cUN7a0xG";
-gameID = "Xi3hQ1fLeyTh38N8VEM6";
-// I hope I never have to change these values...
+    // These are IDs of the documents as they are in the database right now.
+    // If I remove and add a document, these values could change.
+
+// DO NOT DELETE THESE QUITE YET.
+// I MAY NEED THESE TO GET THE DOCUMENT ID'S LATER.
+    // db.collection('dice').limit(1).get()
+    // .then( snap => { diceID = snap.docs[0].id });
+
+    // db.collection('timer').limit(1).get()
+    // .then( snap => { timerID = snap.docs[0].id });
+
+    // db.collection('wordlist').where('set', '==', 'index').limit(1).get()
+    // .then( snap => { wordlistID = snap.docs[0].id });
+
+    // db.collection('game').limit(1).get()
+    // .then( snap => { gameID = snap.docs[0].id });
+
+
+
+
 
 
 
@@ -133,8 +130,8 @@ gameID = "Xi3hQ1fLeyTh38N8VEM6";
 //    MM    MM    MM    MM      MM      MM    MM    MM  MM        MM    MM          MM        
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
-// Add ONCHANGE event listeners to each of the input.ans
 ( function() {
+    // Add onchange event listener to each of the "input.ans"
     for ( i=0 ; i<12 ; i++ ) {
         let index = i;
         ans[i].onchange = () => { whenYouChangeAnswer(index); }
@@ -171,12 +168,10 @@ db.collection('dice').onSnapshot( snap => {
 db.collection('timer').onSnapshot( snap => { 
     // Whenever any player starts the countdown, everyone sees the countdown.
     endTime = snap.docs[0].data().endTime;
-    // $(timer).text(secondsToStr(timeLimit));
     blinkOnce('timer');
 });
 
 db.collection('wordindex').onSnapshot( snapshot => { 
-    categories = [];
     let num = snapshot.docs[0].data().number;
     let lang = snapshot.docs[0].data().language;
     letterList.index = lang;
@@ -191,65 +186,40 @@ db.collection('wordindex').onSnapshot( snapshot => {
         snap.docs.forEach( (doc, i) => { 
             $('.ans').eq(i).attr("placeholder", `${doc.data().phrase}`); 
             $('.ans').eq(i).val(''); 
-            // categories.push(doc.data().phrase);
         });
     });
 
 });
 
-
-
 db.collection('game').onSnapshot( snap => {
     if (playerName == '') return;
     if (!snap.docs[0].data().started) return;
         // Do something ONLY if the game started...
-
     isClockTicking = true;
     removePlayerData();
     resetAnswers();
     synchResultsQuestions();
-    // playerID = 'none';
-
 });
 
-
-// let obj = {};
 db.collection('players').onSnapshot( snap => {
     if (playerName == '') return;
-
     let changes = snap.docChanges();
     changes.forEach( change => {
-
         let obj = change.doc.data();
-
-        // console.log('inside onSnapshot');
-        // console.log(change.type);
-        // console.log(obj);
-
         switch (change.type) {
             case 'removed':
                 playerID = 'none';
                 break;
             case 'added':
-                
                 Object.keys(obj).forEach( key => {
-                    if (key == 'player') {
-                        addPlayerData( obj.player );
-                    } else {
-                        // console.log('added / enterPD');
-                        enterPlayerData( obj.player, key, obj[key] );
-                    }
+                    if (key == 'player') { addPlayerData( obj.player );
+                    } else { enterPlayerData( obj.player, key, obj[key] ); }
                 });
-                
                 break;
             case 'modified':
                 Object.keys(obj).forEach( key => {
-                    if ( key != 'player' ) {
-                        // console.log('modified / enterPD');
-                        enterPlayerData( obj.player, key, obj[key] );
-                    }
+                    if ( key != 'player' ) { enterPlayerData( obj.player, key, obj[key] ); }
                 });
-
                 break;
             default:
                 break;
@@ -281,8 +251,6 @@ db.collection('players').onSnapshot( snap => {
 
 nameText.onchange = () => {
     playerName = nameText.value;
-    nameText.value = '';
-    console.log('You are', playerName);
     showWall(wall1);
 }
 
@@ -320,7 +288,6 @@ timer.onclick = () => {
         // ...the game will STOP. That's what you just did.
         endTime = 0;
         isClockTicking = false;
-        console.log('clicked on timer');
         db.collection('game').doc(gameID).update({ started : false });
     } else {
         // If the timer just says START and then you click on it...
@@ -328,9 +295,7 @@ timer.onclick = () => {
         // isClockTicking = true;
         resetGameAndPlayers();
         endTime = futureInSeconds(timeLimit);
-        // $(timer).text(secondsToStr(timeLimit));
         let letter = randomLetter();
-        console.log('clicked on timer');
         db.collection('dice').doc(diceID).update({ letter : letter });
         db.collection('game').doc(gameID).update({ started : true });
         
@@ -339,7 +304,7 @@ timer.onclick = () => {
 }
 
 results.onclick = () => { 
-    // if (isClockTicking) return;
+    if (isClockTicking) return;
     showWall(wall3); 
 }
 
@@ -398,12 +363,8 @@ function synchResultsQuestions() {
 function getPlayerID() {
     // Assuming that this player already made a document in 'players' collection...
     db.collection('players').where('player', '==', playerName).get()
-    .then( snap => {
-        playerID = snap.docs[0].id;
-        console.log('playerID is', playerID);
-    });
+    .then( snap => { playerID = snap.docs[0].id; });
 }
-
 
 function makeFirstMove(index) {
     // This assumes that the player document for this player does not yet exist.
@@ -416,6 +377,8 @@ function makeFirstMove(index) {
 }
 
 function makeNextMove(index) {
+    // Just like makeFirstMove()... except that this time you UPDATE, not ADD.
+    // In order for this to work, playerID needs to be not 'none'.
     let obj = {};
     obj.player = playerName;
     obj[Key(index)] = $('.ans').eq(index).val();
@@ -430,11 +393,16 @@ function whenYouChangeAnswer(index) {
     } else { makeNextMove(index); }
 }
 
-
 function Key(index) {
+    // Takes a number and converts it to a string that follows...
+    // ...this format:  "word00".
     let number = 101 + index;
     return "word" + number.toString().slice(1,3);
 }
+
+
+
+
 
 
 
@@ -450,40 +418,17 @@ function Key(index) {
 // SETINTERVAL CONTINUOUS _________________________________________
 
 let timeLoop = setInterval( () => {
+    // This loop is always running. Every 50ms.
+    // There is a way to stop it using "stopLoop", but I never use it.
     nowTime = nowInSeconds();
     let str = (endTime > nowTime) ? secondsToStr(endTime - nowTime) : "START";
     $(timer).text(str);
     if (endTime == nowTime) {
-        
         endTime = nowTime  - 1;
         soundTimerEnd.play();
         isClockTicking = false;
         blinkOnce('timer');
-
-        // let arr = [];
-        // for ( i=0 ; i<12 ; i++ ) {
-        //     if ( $('.ans').eq(i).val() == '' ) { arr.push('-'); }
-        //     else { arr.push( $('.ans').eq(i).val() ); }
-        // }
-        // db.collection('players').doc(playerID).update({
-        //     "word01" : arr[0],
-        //     "word02" : arr[1],
-        //     "word03" : arr[2],
-        //     "word04" : arr[3],
-        //     "word05" : arr[4],
-        //     "word06" : arr[5],
-        //     "word07" : arr[6],
-        //     "word08" : arr[7],
-        //     "word09" : arr[8],
-        //     "word10" : arr[9],
-        //     "word11" : arr[10],
-        //     "word12" : arr[11],
-        //     "player" : playerName,
-        //     "status" : "done"
-        // });
-
         db.collection('game').doc(gameID).update({ started : false });
-
     }
     if (stopLoop) clearInterval(timeLoop);
 }, 50 );

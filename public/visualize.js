@@ -1,4 +1,5 @@
 
+
 console.log('visualize.js at your service!');
 
 
@@ -16,6 +17,9 @@ console.log('visualize.js at your service!');
 const font = {};
 font.EN = "'Boogaloo', cursive";
 font.KR = "'Jua', sans-serif";
+
+
+
 
 
 
@@ -207,8 +211,7 @@ function useThisUnit(text) {
 }
 
 function blinkOnce(text) {
-    // valid inputs are...
-    // 'dice', 'timer', 'results'
+    // valid inputs are... 'dice', 'timer', 'results'
     let elem = document.querySelector(`#${text} + .flash`);
     $(elem).fadeIn(0, () => {
         $(elem).fadeOut(400);
@@ -239,9 +242,6 @@ function enterPlayerData(name, key, value) {
     let str = value;
     if ( str == '' ) str = '-';
 
-    console.log('--inside enterPlayerData() --');
-    console.log(name,key,value);
-
     let col = -99;
     let row = parseInt( key.slice(4,6) );
     let len = $('.player-label').length;
@@ -249,9 +249,12 @@ function enterPlayerData(name, key, value) {
     if ( col > -1 ) { $('.playerdata').eq(col).children().eq(row).html(str); }
 }
 
-
 function removePlayerData() {
     // Removes all columns in the Results page EXCEPT the first column.
     let len = playerdata.length;
     for ( i=0 ; i<len ; i++ ) { playerdata[0].remove(); }
 }
+
+
+
+
