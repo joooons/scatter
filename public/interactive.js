@@ -162,8 +162,6 @@ db.collection('game').onSnapshot( snap => {
 
         removePlayerData();
         for ( i=0 ; i<12 ; i++ ) { $('.ans').eq(i).val(''); }
-        
-        // resetGameAndPlayers();
 
         db.collection('players').add({
             player : playerName,
@@ -234,9 +232,6 @@ db.collection('players').onSnapshot( snap => {
 //  MMMMMMMM      MM            MM    MM  MM    MM  MM    MM  MMMMMM    MMMMMM  MMMMMMMM  MM    MM  
 
 
-// $('#name').on('change', () => {
-
-// });
 
 nameText.onchange = () => {
     playerName = nameText.value;
@@ -276,7 +271,7 @@ timer.onclick = () => {
     soundButtonClick.play();
     if (endTime > nowTime) {
         // If the timer is counting down already, and then you click on it...
-        // ...the game will stop. That's what you just did.
+        // ...the game will STOP. That's what you just did.
         endTime = 0;
         isClockTicking = false;
         console.log('clicked on timer');
