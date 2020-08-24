@@ -251,6 +251,10 @@ db.collection('players').onSnapshot( snap => {
 
 nameText.onchange = () => {
     playerName = nameText.value;
+    showWall(wall5);
+}
+
+introBox.onclick = () => {
     showWall(wall1);
 }
 

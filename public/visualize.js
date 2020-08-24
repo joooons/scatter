@@ -78,7 +78,8 @@ const wall4             = document.getElementById('wall-4');
 const cardBox           = document.getElementById('card-box');
 const card              = document.getElementsByClassName('card');
 
-
+const wall5             = document.getElementById('wall-5');
+const introBox          = document.getElementById('intro-box');
 
 
 

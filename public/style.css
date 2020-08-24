@@ -146,7 +146,43 @@ input::placeholder {
 
 #wall-4 { background-image : var(--greenGradient); }
 
+#wall-5 { background-image : var(--blueGradient); }
 
+
+
+
+
+
+
+
+/*  MMMMMM  MM    MM  MMMMMM  MMMMMM      MMMM     */
+/*    MM    MMMM  MM    MM    MM    MM  MM    MM   */
+/*    MM    MM  MMMM    MM    MMMMMM    MM    MM   */
+/*    MM    MM    MM    MM    MM    MM  MM    MM   */
+/*    MM    MM    MM    MM    MM    MM  MM    MM   */
+/*  MMMMMM  MM    MM    MM    MM    MM    MMMM     */
+
+#intro-box {
+    position: relative;
+    background-image: var(--yellowGradient);
+    border-radius: 3vw;
+    width: 60%;
+    height: 50%;
+    padding: 10%;
+    font-size: 1em;
+    box-shadow: 0 30px 30px -20px #0009 inset, 0 -30px 30px -20px #0009 inset;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#intro-box::-webkit-scrollbar {
+    display: none;
+}
+
+#intro-header {
+    font-size: 2em;
+}
 
 
 
