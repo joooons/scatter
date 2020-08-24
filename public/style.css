@@ -353,7 +353,7 @@ input::placeholder {
 #data-row-frame {
     display: flex;
     flex-flow: row;
-    width: 2000px;
+    width: 100vh;
 }
 
 .column {
@@ -369,14 +369,23 @@ input::placeholder {
 }
 
 
+#category-data {
+    white-space: nowrap;
+    overflow-x: auto;
+    /* width: 100px; */
+}
+
 #category-header {
     text-decoration: underline;
     text-align: center;
 }
 
-
 .playerdata {
     text-align: center;
+    white-space: nowrap;
+    overflow-x: auto;
+    /* width: 100px; */
+}
 }
 
 .player-label {
