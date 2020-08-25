@@ -252,6 +252,13 @@ db.collection('players').onSnapshot( snap => {
 //  MM          MM  MM          MM    MM  MM    MM  MM    MM  MM    MM  MM      MM        MM    MM  
 //  MMMMMMMM      MM            MM    MM  MM    MM  MM    MM  MMMMMM    MMMMMM  MMMMMMMM  MM    MM  
 
+nameText.onfocus = () => {
+    nameText.placeholder = '';
+}
+
+nameText.onblur = () => {
+    nameText.placeholder = 'george washington';
+}
 
 nameText.onchange = () => {
     playerName = nameText.value;

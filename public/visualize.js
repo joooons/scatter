@@ -199,6 +199,7 @@ function resize() {
         makeWordlistFlat();
         useThisUnit('mid');
     }
+    stageStalkers();
 
     function makeWordlistFlat() {
         wordlistFrame.style.flexFlow = 'row';
