@@ -173,6 +173,28 @@ p {
     top: 61px;
 }
 
+#help-2 {
+    left: 200px;
+    top: 61px;
+}
+
+#help-3 {
+    left: 137px;
+    top: 100px;
+}
+
+#help-4 {
+    left: 61px;
+    top: 99px;
+}
+
+#help-5 {
+    left: 200px;
+    top: 200px;
+}
+
+
+
 div.gray-box-abs { position: absolute; }
 
 div.gray-box-rel { position: relative; }

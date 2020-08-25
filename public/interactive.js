@@ -274,6 +274,10 @@ title.onclick = () => {
     }
 }
 
+titleHelp.onclick = () => {
+    toggleWall(wall5);
+}
+
 titleConfig.onclick = () => {
     if (!isAuthorized) return;
     if (isClockTicking) return;
