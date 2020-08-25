@@ -161,9 +161,8 @@ wordindexID = "vJq15L5GkZv6cUN7a0xG";
 //  MM    MM  MM    MM  MM    MM  MM    MM  MM    MM  MM        MM    MM  MM    MM  MM    MM    MM    
 //    MMMM    MM    MM    MMMM    MM    MM  MM    MM  MM          MMMM    MM    MM    MMMM      MM    
 
-( function() {
-    return;
-
+// ( function() {
+//     return;
 
 db.collection('dice').onSnapshot( snap => {
     // Whenever any player changes the letter, everyone sees the new letter.
@@ -235,8 +234,7 @@ db.collection('players').onSnapshot( snap => {
 
 });
 
-
-})();
+// })();
 
 
 
@@ -257,7 +255,7 @@ db.collection('players').onSnapshot( snap => {
 
 nameText.onchange = () => {
     playerName = nameText.value;
-    showWall(wall5);
+    showWall(wall1);
 }
 
 wall5.onclick = () => {
@@ -270,6 +268,7 @@ wall5.onclick = () => {
 }
 
 title.onclick = () => {
+    titleHelp.classList.remove('blink');
     isAuthorized = (isAuthorized) ? false : true;
     if (isAuthorized) {
         title.innerText = 'ADMIN MODE';
@@ -281,6 +280,7 @@ title.onclick = () => {
 }
 
 titleHelp.onclick = () => {
+    titleHelp.classList.remove('blink');
     titleHelp.classList.remove('blink');
     stageStalkers();
     toggleWall(wall5);
@@ -326,8 +326,9 @@ timer.onclick = () => {
     db.collection('timer').doc(timerID).update({ endTime : endTime });
 }
 
-results.onclick = () => { 
+results.onclick = () => {
     if (isClockTicking) return;
+    titleHelp.classList.remove('blink');
     showWall(wall3); 
 }
 

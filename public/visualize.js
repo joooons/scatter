@@ -104,7 +104,7 @@ const grayBoxAbs        = document.getElementsByClassName('gray-box-abs');
 //    MM    MM    MM    MM      MM      MM    MM    MM  MM        MM    MM          MM        
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
-showWall(wall1);
+showWall(wall2);
 hideStalkers();
 useThisUnit('vh');
 resize();
