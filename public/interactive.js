@@ -19,6 +19,8 @@ var playerName = '';
     // ...the 'game' and 'players' collections.
 var isAuthorized = false;
 
+var helpCount = 0;
+
 var timeLimit = 180;
 var nowTime = nowInSeconds();
 var endTime = 0;
@@ -260,7 +262,23 @@ nameText.onchange = () => {
 
 wall5.onclick = () => {
     // showWall(wall1);
-    toggleWall(wall5);
+    console.log('wall5 clicked');
+
+    
+    $('.gray-box-abs').eq(helpCount).fadeOut(400, function(){
+        helpCount++;
+        stageStalkers();
+
+        if ( helpCount < 5 ) {
+            $('.gray-box-abs').eq(helpCount).fadeIn(400);
+        } else {
+            toggleWall(wall5);
+        }
+
+    });
+
+
+    
 }
 
 title.onclick = () => {
@@ -275,7 +293,10 @@ title.onclick = () => {
 }
 
 titleHelp.onclick = () => {
+    stageStalkers();
     toggleWall(wall5);
+    $('.gray-box-abs').eq(0).fadeIn(400);
+    helpCount = 0;
 }
 
 titleConfig.onclick = () => {

@@ -85,6 +85,7 @@ const help2             = document.getElementById('help-2');
 const help3             = document.getElementById('help-3');
 const help4             = document.getElementById('help-4');
 const help5             = document.getElementById('help-5');
+const grayBoxAbs        = document.getElementsByClassName('gray-box-abs');
 
 
 
@@ -104,6 +105,7 @@ const help5             = document.getElementById('help-5');
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
 showWall(wall1);
+hideStalkers();
 useThisUnit('vh');
 resize();
 
@@ -158,13 +160,21 @@ function toggleWall(elem) {
 
 function elementStalker(victim, stalker) {
     let rect = victim.getBoundingClientRect();
-
     stalker.style.left = rect.left - 50 + ( rect.width / 2 ) + 'px';
     stalker.style.top = rect.bottom + 20 + 'px';
 }
 
+function stageStalkers() {
+    elementStalker(title, help1);
+    elementStalker(wordlistHeader, help2);
+    elementStalker(timer, help3);
+    elementStalker(results, help4);
+    elementStalker(titleConfig, help5);
+}
 
-
+function hideStalkers() {
+    for ( i=1 ; i <= 5 ; i++ ) { $(`#help-${i}`).fadeOut(); }
+}
 
 function setFont(font) {
     // Either enter font.EN or font.KR
