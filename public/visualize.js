@@ -98,7 +98,8 @@ const introBox          = document.getElementById('intro-box');
 //    MM    MM    MM    MM      MM      MM    MM    MM  MM        MM    MM          MM        
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
-showWall(wall2);
+showWall(wall1);
+toggleWall(wall5);
 useThisUnit('vh');
 resize();
 
@@ -145,6 +146,10 @@ function showWall(elem) {
     for ( i=0 ; i<walls.length ; i++ ) { $(walls[i]).fadeOut(0); }
     resize();
     $(elem).fadeIn(500);
+}
+
+function toggleWall(elem) {
+    $(elem).fadeToggle(0);
 }
 
 function setFont(font) {

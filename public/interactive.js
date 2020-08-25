@@ -159,6 +159,10 @@ wordindexID = "vJq15L5GkZv6cUN7a0xG";
 //  MM    MM  MM    MM  MM    MM  MM    MM  MM    MM  MM        MM    MM  MM    MM  MM    MM    MM    
 //    MMMM    MM    MM    MMMM    MM    MM  MM    MM  MM          MMMM    MM    MM    MMMM      MM    
 
+( function() {
+    return;
+
+
 db.collection('dice').onSnapshot( snap => {
     // Whenever any player changes the letter, everyone sees the new letter.
     $(dice).html(snap.docs[0].data().letter); 
@@ -230,7 +234,7 @@ db.collection('players').onSnapshot( snap => {
 });
 
 
-
+})();
 
 
 
@@ -254,8 +258,9 @@ nameText.onchange = () => {
     showWall(wall5);
 }
 
-introBox.onclick = () => {
-    showWall(wall1);
+wall5.onclick = () => {
+    // showWall(wall1);
+    toggleWall(wall5);
 }
 
 title.onclick = () => {
