@@ -38,6 +38,7 @@ const container         = document.getElementById('container');
 
 const titleBox          = document.getElementById('title-box');
 const title             = document.getElementById('title');
+const titleHelp         = document.getElementById('title-help');
 const titleConfig       = document.getElementById('title-config');
 
 const wordlistBox       = document.getElementById('wordlist-box');
@@ -205,6 +206,7 @@ function useThisUnit(text) {
     removeClassAddClass(container);
     removeClassAddClass(titleBox);
     removeClassAddClass(title);
+    removeClassAddClass(titleHelp);
     removeClassAddClass(titleConfig);
     removeClassAddClass(diceBox);
     removeClassAddClass(dice);
