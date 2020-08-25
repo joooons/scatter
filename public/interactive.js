@@ -261,24 +261,12 @@ nameText.onchange = () => {
 }
 
 wall5.onclick = () => {
-    // showWall(wall1);
-    console.log('wall5 clicked');
-
-    
-    $('.gray-box-abs').eq(helpCount).fadeOut(400, function(){
+    $('.gray-box-abs').eq(helpCount).fadeOut(200, function(){
         helpCount++;
         stageStalkers();
-
-        if ( helpCount < 5 ) {
-            $('.gray-box-abs').eq(helpCount).fadeIn(400);
-        } else {
-            toggleWall(wall5);
-        }
-
+        if ( helpCount < 5 ) { $('.gray-box-abs').eq(helpCount).fadeIn(200);
+        } else { toggleWall(wall5); }
     });
-
-
-    
 }
 
 title.onclick = () => {
@@ -293,6 +281,7 @@ title.onclick = () => {
 }
 
 titleHelp.onclick = () => {
+    titleHelp.classList.remove('blink');
     stageStalkers();
     toggleWall(wall5);
     $('.gray-box-abs').eq(0).fadeIn(400);

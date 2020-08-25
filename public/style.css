@@ -150,7 +150,6 @@ p {
 
 #wall-4 { background-image : var(--greenGradient); }
 
-/* #wall-5 { background-image : var(--whiteShade); } */
 #wall-5 { background: #FFF9}
 
 
@@ -202,11 +201,12 @@ div.gray-box-rel { position: relative; }
 div.gray-box {
     background: white;
     border-radius: 10px;
-    border: 4px solid black;
+    border: 4px solid orange;
     text-align: center;
     width: 100px;
     box-sizing: border-box;
     padding: 10px;
+    color: black;
 }
 
 div.gray-box:before {
@@ -215,7 +215,7 @@ div.gray-box:before {
     left: 30px;
     top: -40px;
     border: 20px solid;
-    border-color: transparent transparent black transparent;
+    border-color: transparent transparent orange transparent;
 }
 
 div.gray-box:after {
@@ -287,16 +287,37 @@ div.gray-box:after {
     justify-content: center;
 }
 
+#title-help.blink {
+    animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%   { background: var(--whiteShade); }
+    50%  { background: var(--redish); }
+    100% { background: var(--whiteShade); }
+}
+
 div.circle {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color : var(--whiteShade);
-    /* background-color : white; */
-    /* color : var(--blackShade); */
     color: black;
     font-weight: bold;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
