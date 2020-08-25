@@ -19,7 +19,9 @@ var playerName = '';
     // ...the 'game' and 'players' collections.
 var isAuthorized = false;
 
-var helpCount = 0;
+var help = {};
+help.count = 0;
+help.freeze = false;
 
 var timeLimit = 180;
 var nowTime = nowInSeconds();
@@ -266,11 +268,19 @@ nameText.onchange = () => {
 }
 
 wall5.onclick = () => {
-    $('.gray-box-abs').eq(helpCount).fadeOut(200, function(){
-        helpCount++;
+    if (help.freeze) return;
+    help.freeze = true;
+    $('.gray-box-abs').eq(help.count).fadeOut(200, function(){
+        help.count++;
         stageStalkers();
-        if ( helpCount < 5 ) { $('.gray-box-abs').eq(helpCount).fadeIn(200);
-        } else { toggleWall(wall5); }
+        if ( help.count < 5 ) { 
+            $('.gray-box-abs').eq(help.count).fadeIn(200, function() {
+                help.freeze = false;
+            });
+        } else { 
+            toggleWall(wall5); 
+            help.freeze = false;
+        }
     });
 }
 
@@ -278,7 +288,7 @@ title.onclick = () => {
     titleHelp.classList.remove('blink');
     isAuthorized = (isAuthorized) ? false : true;
     if (isAuthorized) {
-        title.innerText = 'ADMIN MODE';
+        title.innerText = 'UNLOCKED';
         titleBox.classList.add('admin');
     } else {
         title.innerText = 'SCATTERGORIES!';
@@ -292,7 +302,7 @@ titleHelp.onclick = () => {
     stageStalkers();
     toggleWall(wall5);
     $('.gray-box-abs').eq(0).fadeIn(400);
-    helpCount = 0;
+    help.count = 0;
 }
 
 titleConfig.onclick = () => {
