@@ -67,7 +67,7 @@
 }
 
 .box {
-    cursor : pointer;
+    /* cursor : pointer; */
     background : var(--yellowGradient);
     overflow-x : hidden;
     overflow-y : hidden;
@@ -192,8 +192,6 @@ p {
     top: 200px;
 }
 
-
-
 div.gray-box-abs { position: absolute; }
 
 div.gray-box-rel { position: relative; }
@@ -281,10 +279,18 @@ div.gray-box:after {
     background-image: var(--greenGradient);
 }
 
+#title {
+    cursor : pointer;
+}
+
 #title-levers {
     display: flex;
     flex-flow: row;
     justify-content: center;
+}
+
+#title-help {
+    cursor : pointer;
 }
 
 #title-help.blink {
@@ -295,6 +301,10 @@ div.gray-box:after {
     0%   { background: var(--whiteShade); }
     50%  { background: var(--redish); }
     100% { background: var(--whiteShade); }
+}
+
+#title-config {
+    cursor : pointer;
 }
 
 div.circle {
@@ -362,6 +372,9 @@ div.circle {
     z-index: 3;
 }
 
+#timer {
+    cursor : pointer;
+}
 
 
 
@@ -384,6 +397,9 @@ div.circle {
     z-index: 4;
 }
 
+#results {
+    cursor : pointer;
+}
 
 
 
@@ -406,6 +422,7 @@ div.circle {
 }
 
 #wordlist-header {
+    cursor : pointer;
     width : 100%;
     text-align : center;
     text-decoration : underline;
@@ -446,6 +463,7 @@ div.circle {
 }
 
 #data-row-scroll {
+    cursor : pointer;
     position: absolute;
     width: 90%;
     height: 90%;
@@ -520,6 +538,7 @@ div.circle {
 }
 
 .card {
+    cursor : pointer;
     font-size: 2em;
     border-radius: 2vh;
     width: 24vw;
