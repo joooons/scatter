@@ -85,6 +85,7 @@ const help2             = document.getElementById('help-2');
 const help3             = document.getElementById('help-3');
 const help4             = document.getElementById('help-4');
 const help5             = document.getElementById('help-5');
+const help6             = document.getElementById('help-6');
 const grayBoxAbs        = document.getElementsByClassName('gray-box-abs');
 
 
@@ -167,13 +168,14 @@ function elementStalker(victim, stalker) {
 function stageStalkers() {
     elementStalker(title, help1);
     elementStalker(wordlistHeader, help2);
-    elementStalker(timer, help3);
-    elementStalker(results, help4);
-    elementStalker(titleConfig, help5);
+    elementStalker(ans[0], help3);
+    elementStalker(timer, help4);
+    elementStalker(results, help5);
+    elementStalker(titleConfig, help6);
 }
 
 function hideStalkers() {
-    for ( i=1 ; i <= 5 ; i++ ) { $(`#help-${i}`).fadeOut(); }
+    for ( i=1 ; i <= 6 ; i++ ) { $(`#help-${i}`).fadeOut(); }
 }
 
 function setFont(font) {

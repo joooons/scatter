@@ -273,7 +273,7 @@ wall5.onclick = () => {
     $('.gray-box-abs').eq(help.count).fadeOut(200, function(){
         help.count++;
         stageStalkers();
-        if ( help.count < 5 ) { 
+        if ( help.count < 6 ) { 
             $('.gray-box-abs').eq(help.count).fadeIn(200, function() {
                 help.freeze = false;
             });
