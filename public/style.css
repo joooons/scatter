@@ -143,6 +143,15 @@ p {
 /*  MM  MM  MM  MM    MM  MM      MM      MM    MM   */
 /*    MM  MM    MM    MM  MMMMMM  MMMMMM    MMMM     */
 
+#uberwall { 
+    position : fixed;
+    top : 0px;
+    bottom : 0px;
+    left : 0px;
+    right : 0px;
+    background-image : var(--blueGradient); 
+}
+
 #wall-1 { background-image : var(--blueGradient); }
 
 #wall-2 { background-image : var(--redGradient); }
