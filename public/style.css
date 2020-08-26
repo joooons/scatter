@@ -106,6 +106,7 @@ body {
     user-select : none;
     box-sizing: border-box;
     font-family: var(--fontEN);
+    /* background-image: var(--blueGradient); */
     /* don't put background color or image here. it gets weird. Trust me. */
 }
 

@@ -104,11 +104,11 @@ const grayBoxAbs        = document.getElementsByClassName('gray-box-abs');
 //    MM    MM    MM    MM      MM      MM    MM    MM  MM        MM    MM          MM        
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
-showWall(wall2);
+pickRandomName();
 hideStalkers();
 useThisUnit('vh');
 resize();
-
+showWall(wall2);
 
 
 
@@ -287,6 +287,21 @@ function removePlayerData() {
     for ( i=0 ; i<len ; i++ ) { playerdata[0].remove(); }
 }
 
+function pickRandomName() {
+    let rand = Math.floor( Math.random() * 10 );
+    let names = [
+        'Soren Kierkegaard',
+        'Ulrich Zwingli',
+        'Temujin',
+        'Thelonious Monk',
+        'Sojourner Truth',
+        'Hakeem Olajuwon',
+        'Ernest Hemingway',
+        'Andrew Carnegie',
+        'Michael Faraday',
+        'Claude Monet' ];
+    nameText.placeholder = names[rand];
+}
 
 
 

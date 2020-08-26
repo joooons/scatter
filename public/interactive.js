@@ -259,7 +259,7 @@ nameText.onfocus = () => {
 }
 
 nameText.onblur = () => {
-    nameText.placeholder = 'george washington';
+    pickRandomName();
 }
 
 nameText.onchange = () => {
