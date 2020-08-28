@@ -11,10 +11,10 @@
 
 :root {
     --redish : #F35;
-    --greenish : #4FA; 
+    /* --greenish : #4FA;  */
     --whiteShade : rgba(255,255,255,0.5);
-    --blackShade : rgb(0, 0, 0, 0.5);
-    --blackerShade : rgb(0, 0, 0, 0.7);
+    /* --blackShade : rgb(0, 0, 0, 0.5); */
+    /* --blackerShade : rgb(0, 0, 0, 0.7); */
     --blueGradient : linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
     --yellowGradient : linear-gradient(27deg, rgb(239, 190, 0), rgb(236, 221, 15));
     --redGradient : linear-gradient(120deg, #f093fb 0%, #f5576c 100%);

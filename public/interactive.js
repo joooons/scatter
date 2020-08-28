@@ -2,6 +2,11 @@
 
 console.log('interactive.js at your service!');
 
+// This script contains all interactions with firebase, event handlers, and...
+// ...functions that control calculations and flow of data.
+
+
+
 
 
 
@@ -26,7 +31,7 @@ help.freeze = false;
 var timeLimit = 180;
 var nowTime = nowInSeconds();
 var endTime = 0;
-var stopLoop = false;           // This will never be used.
+var stopLoop = false;           // This will never be used. NEVER. Totally pointless.
 var isClockTicking = false;
 
 var letterList = {
@@ -74,31 +79,11 @@ const soundTimerEnd = new defineSound(soundFile.file_1, 'auto', 'none');
 
 // FIREBASE objects ____________________________________
 const db = firebase.firestore();
-var diceID;
-var timerID;
-var wordlistID;
-var gameID;
+var diceID = "78URdKxROHcrSEZmQvBs";
+var timerID = "Nw1BT0CUPUTQJwRpQwN8";
+var wordindexID = "vJq15L5GkZv6cUN7a0xG";
+var gameID = "Xi3hQ1fLeyTh38N8VEM6";
 var playerID = 'none';
-
-
-
-
-
-
-
-
-
-//  MMMMMMMM  MMMMMM  MMMMMM    MMMMMMMM  MMMMMM      MMMM      MMMM    MMMMMMMM        MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMM    MMMM    MMMMMM  MMMMMM    MMMM    MM    MM  
-//  MM          MM    MM    MM  MM        MM    MM  MM    MM  MM    MM  MM                MM    MMMM  MM    MM      MM      MM    MM    MM    MM      MM    MM    MM  MMMM  MM  
-//  MMMMMMMM    MM    MMMMMM    MMMMMMMM  MMMMMM    MMMMMMMM    MM      MMMMMMMM          MM    MM  MMMM    MM      MM      MM    MMMMMMMM    MM      MM    MM    MM  MM  MMMM  
-//  MM          MM    MM    MM  MM        MM    MM  MM    MM      MM    MM                MM    MM    MM    MM      MM      MM    MM    MM    MM      MM    MM    MM  MM    MM  
-//  MM          MM    MM    MM  MM        MM    MM  MM    MM  MM    MM  MM                MM    MM    MM    MM      MM      MM    MM    MM    MM      MM    MM    MM  MM    MM  
-//  MM        MMMMMM  MM    MM  MMMMMMMM  MMMMMM    MM    MM    MMMM    MMMMMMMM        MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM    MM    MMMMMM    MMMM    MM    MM  
-
-diceID = "78URdKxROHcrSEZmQvBs";
-gameID = "Xi3hQ1fLeyTh38N8VEM6";
-timerID = "Nw1BT0CUPUTQJwRpQwN8";
-wordindexID = "vJq15L5GkZv6cUN7a0xG";
     // These are IDs of the documents as they are in the database right now.
     // If I remove and add a document, these values could change.
 
@@ -136,6 +121,7 @@ wordindexID = "vJq15L5GkZv6cUN7a0xG";
 
 ( function() {
     // Add onchange event listener to each of the "input.ans"
+    // An IIFE, because I can.
     for ( i=0 ; i<12 ; i++ ) {
         let index = i;
         ans[i].onchange = () => { whenYouChangeAnswer(index); }
@@ -162,9 +148,6 @@ wordindexID = "vJq15L5GkZv6cUN7a0xG";
 //  MM    MM  MM    MM      MM    MM    MM  MM    MM  MMMMMM        MM    MM    MM  MM    MM    MM    
 //  MM    MM  MM    MM  MM    MM  MM    MM  MM    MM  MM        MM    MM  MM    MM  MM    MM    MM    
 //    MMMM    MM    MM    MMMM    MM    MM  MM    MM  MM          MMMM    MM    MM    MMMM      MM    
-
-// ( function() {
-//     return;
 
 db.collection('dice').onSnapshot( snap => {
     // Whenever any player changes the letter, everyone sees the new letter.
@@ -225,18 +208,14 @@ db.collection('players').onSnapshot( snap => {
                 break;
             case 'modified':
                 Object.keys(obj).forEach( key => {
-                    if ( key != 'player' ) { enterPlayerData( obj.player, key, obj[key] ); }
+                    if ( key != 'player' ) enterPlayerData( obj.player, key, obj[key] );
                 });
                 break;
             default:
                 break;
         }
-
     });
-
 });
-
-// })();
 
 
 
@@ -254,13 +233,9 @@ db.collection('players').onSnapshot( snap => {
 //  MM          MM  MM          MM    MM  MM    MM  MM    MM  MM    MM  MM      MM        MM    MM  
 //  MMMMMMMM      MM            MM    MM  MM    MM  MM    MM  MMMMMM    MMMMMM  MMMMMMMM  MM    MM  
 
-nameText.onfocus = () => {
-    nameText.placeholder = '';
-}
+nameText.onfocus = () => { nameText.placeholder = ''; }
 
-nameText.onblur = () => {
-    pickRandomName();
-}
+nameText.onblur = () => { pickRandomName(); }
 
 nameText.onchange = () => {
     playerName = nameText.value;
@@ -338,7 +313,6 @@ timer.onclick = () => {
         let letter = randomLetter();
         db.collection('dice').doc(diceID).update({ letter : letter });
         db.collection('game').doc(gameID).update({ started : true });
-        
     }
     db.collection('timer').doc(timerID).update({ endTime : endTime });
 }
@@ -471,7 +445,7 @@ let timeLoop = setInterval( () => {
         blinkOnce('timer');
         db.collection('game').doc(gameID).update({ started : false });
     }
-    if (stopLoop) clearInterval(timeLoop);
+    if (stopLoop) clearInterval(timeLoop);      // Pointless. I will never stop this.
 }, 50 );
 
 

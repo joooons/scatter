@@ -2,6 +2,8 @@
 
 console.log('visualize.js at your service!');
 
+// This script contains functions that manipulate how the DOM elements show up...
+// ...on the screen. It also contains the DOM object declarations
 
 
 
