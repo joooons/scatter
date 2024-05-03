@@ -1,17 +1,41 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    // This rule allows anyone on the internet to view, edit, and delete
-    // all data in your Firestore database. It is useful for getting
-    // started, but it is configured to expire after 30 days because it
-    // leaves your app open to attackers. At that time, all client
-    // requests to your Firestore database will be denied.
-    //
-    // Make sure to write security rules for your app before that time, or else
-    // your app will lose access to your Firestore database
-    match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2021, 8, 24);
+    
+    match /dice/{diceID} {
+    	allow read;
+      allow write: if request.resource.data.letter is string &&
+      request.resource.data.letter.size() == 1;
     }
+    
+    match /game/{gameID} {
+    	allow read;
+      allow write: if request.resource.data.started is bool;
+    }
+    
+    match /timer/{timerID} {
+    	allow read;
+      allow write: if request.resource.data.endTime is number;
+    }
+    
+    match /wordindex/{wordindexID} {
+    	allow read;
+      allow write: if (request.resource.data.number is number &&
+      request.resource.data.number >= 1 &&
+      request.resource.data.number <= 8) ||
+      (request.resource.data.language is string &&
+      (request.resource.data.language == "EN" || 
+      request.resource.data.language == "KR"));
+    }
+    
+    match /wordlist/{wordlistID} {
+    	allow read;
+      allow write: if false;
+    }
+    
+    match /players/{playerID} {
+    	allow read, write;
+    }
+    
   }
 }
