@@ -20,8 +20,8 @@ console.log('interactive.js at your service!');
 //      MM      MM    MM  MM    MM  MMMMMM  MM    MM  MMMMMM    MMMMMM  MMMMMMMM    MMMM    
 
 var playerName = '';
-    // Until you have a playerName, you will not see changes to...
-    // ...the 'game' and 'players' collections.
+// Until you have a playerName, you will not see changes to...
+// ...the 'game' and 'players' collections.
 var isAuthorized = false;
 
 var help = {};
@@ -35,9 +35,10 @@ var stopLoop = false;           // This will never be used. NEVER. Totally point
 var isClockTicking = false;
 
 var letterList = {
-    index : 'EN',
-    EN : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-    KR : 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ'  }
+    index: 'EN',
+    EN: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    KR: 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ'
+}
 
 
 
@@ -57,8 +58,9 @@ var letterList = {
 //    MMMM      MMMM      MMMM    MM    MM  MMMMMM              MM      MM    MM  MM    MM  MMMMMM  MM    MM  MMMMMM    MMMMMM  MMMMMMMM    MMMM    
 
 const soundFile = {
-    file_1 : './sounds/confirmation_001.ogg',
-    file_6 : './sounds/click_003.mp3',  };
+    file_1: './sounds/confirmation_001.ogg',
+    file_6: './sounds/click_003.mp3',
+};
 const soundButtonClick = new defineSound(soundFile.file_6, 'auto', 'none');
 const soundTimerEnd = new defineSound(soundFile.file_1, 'auto', 'none');
 
@@ -84,22 +86,22 @@ var timerID = "Nw1BT0CUPUTQJwRpQwN8";
 var wordindexID = "vJq15L5GkZv6cUN7a0xG";
 var gameID = "Xi3hQ1fLeyTh38N8VEM6";
 var playerID = 'none';
-    // These are IDs of the documents as they are in the database right now.
-    // If I remove and add a document, these values could change.
+// These are IDs of the documents as they are in the database right now.
+// If I remove and add a document, these values could change.
 
 // DO NOT DELETE THESE QUITE YET.
 // I MAY NEED THESE TO GET THE DOCUMENT ID'S LATER.
-    // db.collection('dice').limit(1).get()
-    // .then( snap => { diceID = snap.docs[0].id });
+// db.collection('dice').limit(1).get()
+// .then( snap => { diceID = snap.docs[0].id });
 
-    // db.collection('timer').limit(1).get()
-    // .then( snap => { timerID = snap.docs[0].id });
+// db.collection('timer').limit(1).get()
+// .then( snap => { timerID = snap.docs[0].id });
 
-    // db.collection('wordlist').where('set', '==', 'index').limit(1).get()
-    // .then( snap => { wordlistID = snap.docs[0].id });
+// db.collection('wordlist').where('set', '==', 'index').limit(1).get()
+// .then( snap => { wordlistID = snap.docs[0].id });
 
-    // db.collection('game').limit(1).get()
-    // .then( snap => { gameID = snap.docs[0].id });
+// db.collection('game').limit(1).get()
+// .then( snap => { gameID = snap.docs[0].id });
 
 
 
@@ -119,10 +121,10 @@ var playerID = 'none';
 //    MM    MM    MM    MM      MM      MM    MM    MM  MM        MM    MM          MM        
 //  MMMMMM  MM    MM  MMMMMM    MM    MMMMMM  MM    MM  MMMMMM  MMMMMM  MMMMMMMMMM  MMMMMMMM  
 
-( function() {
+(function () {
     // Add onchange event listener to each of the "input.ans"
     // An IIFE, because I can.
-    for ( i=0 ; i<12 ; i++ ) {
+    for (i = 0; i < 12; i++) {
         let index = i;
         ans[i].onchange = () => { whenYouChangeAnswer(index); }
     }
@@ -149,66 +151,67 @@ var playerID = 'none';
 //  MM    MM  MM    MM  MM    MM  MM    MM  MM    MM  MM        MM    MM  MM    MM  MM    MM    MM    
 //    MMMM    MM    MM    MMMM    MM    MM  MM    MM  MM          MMMM    MM    MM    MMMM      MM    
 
-db.collection('dice').onSnapshot( snap => {
+db.collection('dice').onSnapshot(snap => {
     // Whenever any player changes the letter, everyone sees the new letter.
-    $(dice).html(snap.docs[0].data().letter); 
+    $(dice).html(snap.docs[0].data().letter);
     blinkOnce('dice');
 });
 
-db.collection('timer').onSnapshot( snap => { 
+db.collection('timer').onSnapshot(snap => {
     // Whenever any player starts the countdown, everyone sees the countdown.
     endTime = snap.docs[0].data().endTime;
     blinkOnce('timer');
 });
 
-db.collection('wordindex').onSnapshot( snapshot => { 
+db.collection('wordindex').onSnapshot(snapshot => {
     let num = snapshot.docs[0].data().number;
     let lang = snapshot.docs[0].data().language;
     letterList.index = lang;
 
     $(titleConfig).html(letterList.index);
     setFont(font[letterList.index]);
-    db.collection('dice').doc(diceID).update({ letter : '?' });
+    db.collection('dice').doc(diceID).update({ letter: '?' });
     wordlistHeader.innerText = `Word List #${num}`;
 
     let set = `${letterList.index}${num}`;
-    db.collection('wordlist').where( 'set', '==', set).get().then( snap => {
-        snap.docs.forEach( (doc, i) => { 
-            $('.ans').eq(i).attr("placeholder", `${doc.data().phrase}`); 
-            $('.ans').eq(i).val(''); 
+    db.collection('wordlist').where('set', '==', set).get().then(snap => {
+        snap.docs.forEach((doc, i) => {
+            $('.ans').eq(i).attr("placeholder", `${doc.data().phrase}`);
+            $('.ans').eq(i).val('');
         });
     });
 
 });
 
-db.collection('game').onSnapshot( snap => {
+db.collection('game').onSnapshot(snap => {
     if (playerName == '') return;
     if (!snap.docs[0].data().started) return;
-        // Do something ONLY if the game started...
+    // Do something ONLY if the game started...
     isClockTicking = true;
     removePlayerData();
     resetAnswers();
     synchResultsQuestions();
 });
 
-db.collection('players').onSnapshot( snap => {
+db.collection('players').onSnapshot(snap => {
     if (playerName == '') return;
     let changes = snap.docChanges();
-    changes.forEach( change => {
+    changes.forEach(change => {
         let obj = change.doc.data();
         switch (change.type) {
             case 'removed':
                 playerID = 'none';
                 break;
             case 'added':
-                Object.keys(obj).forEach( key => {
-                    if (key == 'player') { addPlayerData( obj.player );
-                    } else { enterPlayerData( obj.player, key, obj[key] ); }
+                Object.keys(obj).forEach(key => {
+                    if (key == 'player') {
+                        addPlayerData(obj.player);
+                    } else { enterPlayerData(obj.player, key, obj[key]); }
                 });
                 break;
             case 'modified':
-                Object.keys(obj).forEach( key => {
-                    if ( key != 'player' ) enterPlayerData( obj.player, key, obj[key] );
+                Object.keys(obj).forEach(key => {
+                    if (key != 'player') enterPlayerData(obj.player, key, obj[key]);
                 });
                 break;
             default:
@@ -245,15 +248,15 @@ nameText.onchange = () => {
 wall5.onclick = () => {
     if (help.freeze) return;
     help.freeze = true;
-    $('.gray-box-abs').eq(help.count).fadeOut(200, function(){
+    $('.gray-box-abs').eq(help.count).fadeOut(200, function () {
         help.count++;
         stageStalkers();
-        if ( help.count < 6 ) { 
-            $('.gray-box-abs').eq(help.count).fadeIn(200, function() {
+        if (help.count < 6) {
+            $('.gray-box-abs').eq(help.count).fadeIn(200, function () {
                 help.freeze = false;
             });
-        } else { 
-            toggleWall(wall5); 
+        } else {
+            toggleWall(wall5);
             help.freeze = false;
         }
     });
@@ -284,11 +287,11 @@ titleConfig.onclick = () => {
     if (!isAuthorized) return;
     if (isClockTicking) return;
     soundButtonClick.play();
-    letterList.index = { EN : 'KR', KR : 'EN' }[letterList.index];
-    db.collection('wordindex').doc(wordindexID).update({ language : letterList.index });
+    letterList.index = { EN: 'KR', KR: 'EN' }[letterList.index];
+    db.collection('wordindex').doc(wordindexID).update({ language: letterList.index });
 }
 
-wordlistHeader.onclick = () => {    
+wordlistHeader.onclick = () => {
     if (isClockTicking) return;
     if (!isAuthorized) return;
     soundButtonClick.play();
@@ -303,7 +306,7 @@ timer.onclick = () => {
         // ...the game will STOP. That's what you just did.
         endTime = 0;
         isClockTicking = false;
-        db.collection('game').doc(gameID).update({ started : false });
+        db.collection('game').doc(gameID).update({ started: false });
     } else {
         // If the timer just says START and then you click on it...
         // ...the timer will start counting down. That's what you just did.
@@ -311,25 +314,25 @@ timer.onclick = () => {
         resetGameAndPlayers();
         endTime = futureInSeconds(timeLimit);
         let letter = randomLetter();
-        db.collection('dice').doc(diceID).update({ letter : letter });
-        db.collection('game').doc(gameID).update({ started : true });
+        db.collection('dice').doc(diceID).update({ letter: letter });
+        db.collection('game').doc(gameID).update({ started: true });
     }
-    db.collection('timer').doc(timerID).update({ endTime : endTime });
+    db.collection('timer').doc(timerID).update({ endTime: endTime });
 }
 
 results.onclick = () => {
     if (isClockTicking) return;
     titleHelp.classList.remove('blink');
-    showWall(wall3); 
+    showWall(wall3);
 }
 
 dataBox.onclick = () => { showWall(wall1); }
 
 $('.card').on('click', ev => {
     let str = ev.target.innerText;
-    let char = str.slice(5,6);
+    let char = str.slice(5, 6);
     let num = parseInt(char);
-    db.collection('wordindex').doc(wordindexID).update({ number : num });
+    db.collection('wordindex').doc(wordindexID).update({ number: num });
     showWall(wall1);
 });
 
@@ -351,7 +354,7 @@ $('.card').on('click', ev => {
 
 function randomLetter() {
     let arr = letterList[letterList.index];
-    let rand = Math.floor( Math.random() * Math.floor(arr.length) );
+    let rand = Math.floor(Math.random() * Math.floor(arr.length));
     return arr[rand];
 }
 
@@ -360,25 +363,25 @@ function resetGameAndPlayers() {
     // Removes all columns in Results page except the first column.
     // Resets all .ans to blank.
     // At this time, this function is used 
-    db.collection('players').get().then( snap => {
-        snap.docs.forEach( doc => { db.collection('players').doc(doc.id).delete(); });
+    db.collection('players').get().then(snap => {
+        snap.docs.forEach(doc => { db.collection('players').doc(doc.id).delete(); });
     });
 }
 
-function resetAnswers() { for ( i=0 ; i<12 ; i++ ) { $('.ans').eq(i).val(''); } }
+function resetAnswers() { for (i = 0; i < 12; i++) { $('.ans').eq(i).val(''); } }
 
 function synchResultsQuestions() {
     // This sets up the first column of the Results page.
     // set Header with "wordcard- ??? "
     // Fill all the questions with the same questions on wall-1.
     categoryHeader.innerText = wordlistHeader.innerText;
-    for ( i=0 ; i<12 ; i++ ) { $('.category').eq(i).html( $('.ans').eq(i).attr('placeholder') ); }
+    for (i = 0; i < 12; i++) { $('.category').eq(i).html($('.ans').eq(i).attr('placeholder')); }
 }
 
 function getPlayerID() {
     // Assuming that this player already made a document in 'players' collection...
     db.collection('players').where('player', '==', playerName).get()
-    .then( snap => { playerID = snap.docs[0].id; });
+        .then(snap => { playerID = snap.docs[0].id; });
 }
 
 function makeFirstMove(index) {
@@ -397,7 +400,7 @@ function makeNextMove(index) {
     let obj = {};
     obj.player = playerName;
     obj[Key(index)] = $('.ans').eq(index).val();
-    db.collection('players').doc(playerID).update( obj );
+    db.collection('players').doc(playerID).update(obj);
 }
 
 function whenYouChangeAnswer(index) {
@@ -412,7 +415,7 @@ function Key(index) {
     // Takes a number and converts it to a string that follows...
     // ...this format:  "word00".
     let number = 101 + index;
-    return "word" + number.toString().slice(1,3);
+    return "word" + number.toString().slice(1, 3);
 }
 
 
@@ -432,21 +435,21 @@ function Key(index) {
 
 // SETINTERVAL CONTINUOUS _________________________________________
 
-let timeLoop = setInterval( () => {
+let timeLoop = setInterval(() => {
     // This loop is always running. Every 50ms.
     // There is a way to stop it using "stopLoop", but I never use it.
     nowTime = nowInSeconds();
     let str = (endTime > nowTime) ? secondsToStr(endTime - nowTime) : "START";
     $(timer).text(str);
     if (endTime == nowTime) {
-        endTime = nowTime  - 1;
+        endTime = nowTime - 1;
         soundTimerEnd.play();
         isClockTicking = false;
         blinkOnce('timer');
-        db.collection('game').doc(gameID).update({ started : false });
+        db.collection('game').doc(gameID).update({ started: false });
     }
     if (stopLoop) clearInterval(timeLoop);      // Pointless. I will never stop this.
-}, 50 );
+}, 50);
 
 
 
